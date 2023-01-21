@@ -1,4 +1,4 @@
-# Things a Voting System needs :
+# Things a Voting System needs:
 
 * Secure voter registration and authentication: A system that ensures that only eligible voters can register and that their identities are verified before they can cast their vote.
 
@@ -20,7 +20,7 @@
 
 * Voter accessibility: A system that makes voting accessible to all citizens including individuals with disabilities, elderly or low-literate citizens.
 
-# Things We Need to Do :
+# Things We Need to Do:
 
 * Research and familiarize yourself with blockchain technology and how it can be used for voting.
 
