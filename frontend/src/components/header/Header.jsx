@@ -40,4 +40,24 @@ function Header() {
   )
 }
 
+function HeaderWithBackButton()
+{
+    return (
+        <nav>
+            <div className='logo'>
+                <NavLink to="/">
+                    <img src={logo} alt="Text-And-Cube-Logo" />
+                </NavLink>
+            </div>
+            <div className='nav-links'>
+                <ul>
+                    <li>
+                        Home
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    )
+}
+
 export default Header

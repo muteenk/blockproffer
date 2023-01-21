@@ -1,10 +1,12 @@
 import React from 'react'
 import './home.css'
 import { Link } from 'react-router-dom'
+import Header from '../header/Header'
 
 function Home() {
   return (
     <>
+    <Header />
     <section className='home-section'>
       <div className='how-it-works'>
         <Link to="/howitworks">

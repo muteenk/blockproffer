@@ -1,8 +1,9 @@
 import React from 'react'
+import HeaderWithBackButton from '../header/HeaderWithBackButton'
 
 function About() {
   return (
-    <h1>About</h1>
+    <HeaderWithBackButton />
   )
 }
 
