@@ -1,12 +1,13 @@
 import React from 'react'
 import HeaderWithBackButton from '../header/HeaderWithBackButton'
 
-function Createpoll() {
+function Pollquestion() {
   return (
     <div>
-      <HeaderWithBackButton />
+        <HeaderWithBackButton />
+        
     </div>
   )
 }
 
-export default Createpoll
+export default Pollquestion
