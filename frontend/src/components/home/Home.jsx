@@ -2,6 +2,8 @@ import React from 'react'
 import './home.css'
 import { Link } from 'react-router-dom'
 import Header from '../header/Header'
+import Footer from '../footer/Footer'
+import Cards from '../cards/Cards'
 
 function Home() {
   return (
@@ -27,6 +29,8 @@ function Home() {
           </a>
         </div> */}
     </section>
+    <Cards/>
+    <Footer />
     </>
   )
 }
