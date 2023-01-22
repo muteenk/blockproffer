@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900;8..144,1000&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100;0,8..144,200;0,8..144,300;0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;0,8..144,800;0,8..144,900;1,8..144,100;1,8..144,200;1,8..144,300;1,8..144,400;1,8..144,500;1,8..144,600;1,8..144,700;1,8..144,800;1,8..144,900&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sofia+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root
+{
+    --primary-color: #fafcfa;
+    --secondary-color: #050005;
+    --tertiary-color: #00ec77;
+    --quaternary-color: #3e19c5;
+    --quinary-color: #f93842;
+    --senary-color: #fbc000;
+
+    --primary-font: 'Roboto', sans-serif;
+    --secondary-font: 'Roboto Condensed', sans-serif;
+    --tertiary-font: 'Roboto Flex', sans-serif;
+    --quaternary-font: 'Roboto Mono', sans-serif;
+    --quinary-font: 'Roboto Serif', sans-serif;
+    --senary-font: 'Roboto Slab', sans-serif;
+    --septenary-font: 'Sofia Sans', sans-serif;
+
+
+}
+
+
+section.pollQuestions
+{
+    margin: 2rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+
+section.pollQuestions h1
+{
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+section.pollQuestions h2
+{
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+section.pollQuestions .rules
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+}
+section.pollQuestions .rules p
+{
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--secondary-color);
+    /* margin-bottom: 2rem; */
+}
+
+section.pollQuestions .poll-question-container
+{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 800px;
+    height: 70%;
+    background: var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+section.pollQuestions .poll-question-container .poll-question
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+}
+section.pollQuestions .poll-question-container .poll-question h1
+{
+    font-family: var(--septenary-font);
+}
+
+
+section.pollQuestions .poll-btn-display
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 3rem;
+}
+
+.start-btn
+{
+    background: var(--quinary-color);
+    border: none;
+    color: var(--primary-color);
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.full-btn
+{
+    width: 100%;
+}
+
+.full-btn.prev
+{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.full-btn.next
+{
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.start-btn:hover
+{
+    opacity: 0.8;
+}
+.start-btn:active
+{
+    transform: scale(0.95);
+    opacity: 0.3;
+}
+
+.options
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.option-btn
+{
+    background: var(--secondary-color);
+    border: none;
+    color: var(--primary-color);
+    border-radius: 5px;
+    padding: 1rem 6rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.option-btn:hover
+{
+    opacity: 0.8;
+}
+
+.option-btn:active
+{
+    transform: scale(0.95);
+    opacity: 0.3;
+}
+
+.finish-btn
+{
+    background: var(--tertiary-color);
+    border: none;
+    color: var(--primary-color);
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.finish-btn:hover
+{
+    opacity: 0.8;
+}
+.finish-btn:active
+{
+    transform: scale(0.95);
+    opacity: 0.3;
+}

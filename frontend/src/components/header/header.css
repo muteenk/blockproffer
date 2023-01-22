@@ -33,6 +33,7 @@ nav
     justify-content: space-between;
     align-items: center;
     backdrop-filter: blur(34px);
+    height: 70px;
 }
 
 .logo img
@@ -47,6 +48,7 @@ nav
     align-items: center;
     gap: 2rem;
     font-size: 1.2rem;
+    list-style: none;
 }
 
 .nav-links ul li a
