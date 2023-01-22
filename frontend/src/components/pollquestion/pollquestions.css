@@ -138,6 +138,19 @@ section.pollQuestions .poll-btn-display
     border-bottom-left-radius: 0;
 }
 
+.disabled-btn
+{
+    background: var(--secondary-color);
+    border: none;
+    color: var(--primary-color);
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: not-allowed;
+    transition: all 0.3s ease-in-out;
+}
+
 .start-btn:hover
 {
     opacity: 0.8;

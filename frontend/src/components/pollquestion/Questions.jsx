@@ -35,7 +35,7 @@ function Questions() {
                 <button onClick={() => setOptionChosen("D")} className='option-btn'>{questions[currQuestion].optionD}</button>
             </div>
             <div className='poll-btn-display'>
-                {currQuestion === 0 ? ( <button onClick={finishPoll} className='start-btn full-btn prev'>Finish Poll</button> ) : ( <button onClick={prevQuestion} className='start-btn full-btn prev'>Previous <i className='fas fa-arrow-left'></i></button> )}
+                {currQuestion === 0 ? ( <button onClick={finishPoll} className='start-btn full-btn prev disabled-btn'>Previous</button> ) : ( <button onClick={prevQuestion} className='start-btn full-btn prev'><i className='fas fa-arrow-left'></i> Previous</button> )}
 
                 {currQuestion === questions.length - 1 ? ( <button onClick={finishPoll} className='finish-btn full-btn next'>Finish Poll</button> ) : ( <button onClick={nextQuestion} className='finish-btn full-btn next'>Next <i className='fas fa-arrow-right'></i></button> )}
             </div>
