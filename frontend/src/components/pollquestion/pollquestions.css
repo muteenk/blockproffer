@@ -4,6 +4,7 @@
 {
     --primary-color: #fafcfa;
     --secondary-color: #050005;
+    --secondary-color-lighter: #797979;
     --tertiary-color: #00ec77;
     --quaternary-color: #3e19c5;
     --quinary-color: #f93842;
@@ -140,7 +141,7 @@ section.pollQuestions .poll-btn-display
 
 .disabled-btn
 {
-    background: var(--secondary-color);
+    background: var(--secondary-color-lighter);
     border: none;
     color: var(--primary-color);
     border-radius: 5px;
