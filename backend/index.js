@@ -24,7 +24,12 @@ app.use(express.json());
 
 // End Points
 app.get('/:room', (req, res) => {
-    res.status(200).send({'Hello': req.params.room});
+
+    if (req.params.room == "testNotFound"){
+        return res.status(200).send({'room': "Not Found"})
+    }
+
+    res.status(200).send({'room': req.params.room});
 });
 
 
