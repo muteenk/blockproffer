@@ -1,6 +1,6 @@
 <details>
 <summary>Click to expand</summary>
-    ```
+    ```bash
         NODE_ENV = development
         PORT = 5555
         JWT_SECRET = 'abc@123'
