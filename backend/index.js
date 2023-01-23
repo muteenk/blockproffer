@@ -3,16 +3,27 @@ const express = require("express")
 const http = require("http");
 const path = require('path')
 const {Server} = require("socket.io")
+const dotenv = require('dotenv').config()
 const cors = require("cors");
+const connectDB = require('./config/db')
 
+connectDB()
 
 // Configuration
 const app = express();
-const port = 5555 || process.env.port
+const port = process.env.port || 5555;
 const server = http.createServer(app);
 const io = new Server(server);
 // app.set('view engine', "ejs");
 // app.use('/static', express.static(path.join(__dirname, '../public')))
+
+
+let room = {
+    testFound: {},
+    testNew: {},
+    newRoom: {}
+};
+
 
 
 app.use(cors({
@@ -25,9 +36,11 @@ app.use(express.json());
 // End Points
 app.get('/:room', (req, res) => {
 
-    if (req.params.room == "testFound"){
-        return res.status(200).send({'room': req.params.room})
-    }
+    Object.keys(room).forEach((key) => {
+        if (key == req.params.room){
+            return res.status(200).send({'room': req.params.room})
+        }
+    })
 
     res.status(404).send({'room': "Not Found"});
 });
