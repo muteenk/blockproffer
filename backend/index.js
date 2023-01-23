@@ -5,7 +5,7 @@ const path = require('path')
 const {Server} = require("socket.io")
 const dotenv = require('dotenv').config()
 const cors = require("cors");
-require('./src/config/db');
+const connectDB = require('./src/config/db');
 
 
 
@@ -16,6 +16,7 @@ const mainRouter = require("./src/routes/mainRoutes");
 // Configuration
 const app = express();
 const port = process.env.port || 5555;
+connectDB();
 const server = http.createServer(app);
 const io = new Server(server);
 
@@ -23,7 +24,7 @@ const io = new Server(server);
 
 
 app.use(cors({
-    origin: "http://localhost:3000"
+    origin: "*"
 })); 
 app.use(express.json());
 app.use(mainRouter);

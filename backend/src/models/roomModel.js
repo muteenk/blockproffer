@@ -22,7 +22,8 @@ const roomSchema = new mongoose.Schema({
     },
     resultVisibility : {
         type: Boolean,
-        required: true
+        default: false,
+        required: true        
     },
     allowedUsers : {
         type: Array,
@@ -30,6 +31,7 @@ const roomSchema = new mongoose.Schema({
     },
     startDate : {
         type: Date,
+        default: Date.now,
         required: true
     },
     endDate : {
