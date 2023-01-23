@@ -1,0 +1,51 @@
+.file-card
+{
+    width: 50%;
+    border: 3px dotted var(--primary-color-darker);
+    background: var(--senary-color-lighter);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+.file-card .file-inputs
+{
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.file-card .file-inputs input
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+
+.file-card .file-inputs button
+{
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color-darker);
+    color: var(--senary-color-lighter);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.5rem;
+    font-family: var(--septenary-font);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
