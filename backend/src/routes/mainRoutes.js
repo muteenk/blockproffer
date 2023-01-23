@@ -46,6 +46,28 @@ mainRouter.get('/:room', (req, res) => {
 
 
 
+
+mainRouter.post('/', (req, res) => {
+
+    const data = req.body;
+
+    let roomFound = false;
+
+    room.forEach((room) => {
+        if (room.roomID == data.roomName) {
+            roomFound = true;
+            res.status(200).send({"room" : room});
+        }
+    })
+
+    if (!roomFound){
+        res.status(404).send({"room" : "Room not found"});
+    }
+    
+});
+
+
+
 // // Handling Post request to add students 
 // mainRouter.post("/students", async (req, res) => {
 
