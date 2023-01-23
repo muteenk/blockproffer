@@ -5,9 +5,7 @@ const path = require('path')
 const {Server} = require("socket.io")
 const dotenv = require('dotenv').config()
 const cors = require("cors");
-const connectDB = require('./config/db')
-
-connectDB()
+require('./src/config/db');
 
 // Configuration
 const app = express();
@@ -16,11 +14,11 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 
-let room = {
+let room = [{
     testFound: {},
     testNew: {},
     newRoom: {}
-};
+}];
 
 
 
