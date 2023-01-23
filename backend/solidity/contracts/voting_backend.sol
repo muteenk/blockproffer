@@ -15,9 +15,10 @@ contract PollSystem {
     address pollCreator;
     uint numberOfPollCandidates;
 
-    mapping (uint => PollCandidate) pollCandidates; // storage for different candidates in the poll.
-    mapping (address => bool) alreadyVoted; // storage for the users who already voted.
   }
+
+    mapping (uint => PollCandidate) public pollCandidates; // storage for different candidates in the poll.
+    mapping (address => bool) public alreadyVoted; // storage for the users who already voted.
 
   // This is the data structure of the poll candidate.
   struct PollCandidate 
