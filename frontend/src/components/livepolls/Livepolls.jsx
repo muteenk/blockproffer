@@ -16,19 +16,25 @@ function Livepolls() {
 
   function changeRoomData(e) {
     changeRoomName(e.target.value);
-    console.log(e.target.value)
   }
 
 
   async function sendRoomReq(e){
+
     e.preventDefault();
-    const URL=`http://localhost:5555/${roomName}`;
-    const Res= fetch(URL);
+
+    const Res= fetch(`http://localhost:5555/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({roomName: roomName})
+    });
+
     const response= await Res;
-    if (response.status == 200){
-      const json= await response.json();
-      console.log(json);
-      changeRoom(1);
+    if (response.status === 200){
+      const data = await response.json();
+      changeRoom(data);
       changeRoomNotFound(false);
     }
     else{
@@ -47,7 +53,7 @@ function Livepolls() {
 
       <div className="room-sheduler">
 
-      {(roomNotFound == true) ? <><h4 className='notFound'>Room Not Found !</h4></> : ""}
+      {(roomNotFound === true) ? <><h4 className='notFound'>Room Not Found !</h4></> : ""}
 
         <h1>Enter Room ID: </h1>
 
