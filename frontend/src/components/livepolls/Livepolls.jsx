@@ -23,7 +23,7 @@ function Livepolls() {
 
     e.preventDefault();
 
-    const Res= fetch(`http://localhost:5555/`, {
+    const Res= fetch(`http://localhost:5555/room/join`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -42,6 +42,9 @@ function Livepolls() {
     }
     
   }
+
+
+  
 
   return (
     <>
