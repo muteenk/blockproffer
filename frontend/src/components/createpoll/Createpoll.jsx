@@ -21,6 +21,7 @@ function Createpoll() {
   const [endDate, setEndDate] = useState(null);
   const [endTime, setEndTime] = useState(null);
 
+  const [file, setFile] = useState(null);
 
 
   // Function to handle form data
@@ -61,6 +62,7 @@ function Createpoll() {
   const onFormSubmit = (e) => {
     e.preventDefault();
     console.log(options);
+    console.log(file);
 
   }
 
@@ -79,7 +81,7 @@ function Createpoll() {
         </div>
         <OptionGenerator options={options} setOptions={setOptions} />
         <p>Upload a CSV file to get the name of the eligible voters</p>
-        <FileUpload/>
+        <FileUpload file={file} setFile={setFile} />
         <div className='check-box'>
           <input type="checkbox" id="visibility" name="visibility" onChange={handleVisibility} value={visibility} required/>
           <label>Allow Result Visibility to Voters</label>

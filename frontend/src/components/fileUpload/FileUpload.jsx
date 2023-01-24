@@ -1,13 +1,13 @@
 import React from 'react'
 import './fileUpload.css'
 
-function FileUpload(files, setFiles) {
+function FileUpload(props) {
     const uploadHandler = (e) => {
         const file = e.target.files[0]
         const reader = new FileReader()
         reader.onload = () => {
             if (reader.readyState === 2) {
-                setFiles([...files, reader.result])
+                props.setFile(reader.result)
             }
         }
         reader.readAsDataURL(file)
