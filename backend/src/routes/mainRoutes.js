@@ -22,39 +22,19 @@ let room = [
         title: "Room 3",
         description: "This is room 3"
     }
-    ];
+];
     
 
 
-// End Points
-mainRouter.get('/:room', (req, res) => {
-
-    let roomFound = false;
-
-    room.forEach((room) => {
-        if (room.roomID == req.params.room) {
-            roomFound = true;
-            res.status(200).send({"room" : room});
-        }
-    })
-
-    if (!roomFound){
-        res.status(404).send({"room" : "Room not found"});
-    }
-    
-});
-
-
-
-
-mainRouter.post('/', (req, res) => {
+// Handling Post request to join a room
+mainRouter.post('/room/join', (req, res) => {
 
     const data = req.body;
 
     let roomFound = false;
 
     room.forEach((room) => {
-        if (room.roomID == data.roomName) {
+        if (room.roomID === data.roomName) {
             roomFound = true;
             res.status(200).send({"room" : room});
         }
@@ -68,20 +48,23 @@ mainRouter.post('/', (req, res) => {
 
 
 
-// // Handling Post request to add students 
-// mainRouter.post("/students", async (req, res) => {
 
-//     try{
-//         const data = new student(req.body);
+// Handling Post request to add rooms to the database 
+mainRouter.post("/room/create", async (req, res) => {
 
-//         const result = await data.save()
-//         res.status(201).send(result);
-//     }
-//     catch(err){
-//         res.status(400).send(err);
-//     }
+    try{
+        console.log(req.body);
+        const data = new roomModel(req.body);
+
+        const result = await data.save()
+        console.log(result);
+        res.status(201).send(result);
+    }
+    catch(err){
+        res.status(400).send(err);
+    }
     
-// })
+})
 
 
 
