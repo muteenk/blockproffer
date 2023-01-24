@@ -5,15 +5,16 @@ import Option from './Option'
 
 const OptionGenerator = (props) => {
     
-    const [optionInput, setOptionInput] = useState('')
-    // const [optionValues, setOptionValues] = useState([]);
+    const [optionInput, setOptionInput] = useState('');
 
     const optionHandler = (e) => {
         setOptionInput(e.target.value)
     }
 
     const addOption = () => {
-        // setOptionValues([...optionValues, optionInput]);
+        if (optionInput === ""){
+            return;
+        }
         props.setOptions([...props.options, optionInput]);
         setOptionInput('');
     }
@@ -34,7 +35,7 @@ const OptionGenerator = (props) => {
                 return <Option key={index} data={e} deleteOption={deleteOption}/>
             })}
         </div>
-        <input type="text" id="optionInput" onChange={optionHandler} value={optionInput} required/>
+        <input type="text" id="optionInput" onChange={optionHandler} value={optionInput}/>
         <button type='button' onClick={addOption}>Add Option</button>
     </div>
   )
