@@ -3,7 +3,6 @@ import HeaderWithBackButton from '../header/HeaderWithBackButton'
 import './createpoll.css'
 import FileUpload from '../fileUpload/FileUpload'
 import OptionGenerator from '../optionGenerator/OptionGenerator';
-import Datetime from 'react-datetime';
 
 
 
@@ -15,6 +14,7 @@ function Createpoll() {
   // Hooks for handling form data
   const [pollTitle, setPollTitle] = useState('');
   const [pollDesc, setPollDesc] = useState('');
+  const [options, setOptions] = useState([]);
   const [visibility, setVisibility] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [startTime, setStartTime] = useState(null);
@@ -24,9 +24,30 @@ function Createpoll() {
 
 
   // Function to handle form data
-  const handleInputs = (e) => {
+  const handleTitle = (e) => {
     setPollTitle(e.target.value);
   }
+
+  const handleDesc = (e) => {
+    setPollDesc(e.target.value);
+  }
+
+  const handleStartDate = (e) => {
+    setStartDate(e.target.value);
+  }
+
+  const handleStartTime = (e) => {
+    setStartTime(e.target.value);
+  }
+
+  const handleEndDate = (e) => {
+    setEndDate(e.target.value);
+  }
+
+  const handleEndTime = (e) => {
+    setEndTime(e.target.value);
+  }
+
 
   const handleVisibility = (e) => {
     if (visibility === true) {
@@ -39,7 +60,7 @@ function Createpoll() {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-
+    console.log(options);
 
   }
 
@@ -50,29 +71,29 @@ function Createpoll() {
       <form onSubmit={onFormSubmit}>
         <div className='poll-input'>
           <label>Poll Title</label>
-          <input type="text" name="poll-title" placeholder='Poll Title' id="poll-title" onChange={handleInputs} value={pollTitle} required/>
+          <input type="text" name="poll-title" placeholder='Poll Title' id="poll-title" onChange={handleTitle} value={pollTitle} required/>
         </div>
         <div className='poll-input'>
           <label>Poll Description</label>
-          <textarea name="poll-desc"  id="poll-desc" cols="30" rows="10" placeholder='Poll Description' onChange={handleInputs} value={pollDesc} required></textarea>
+          <textarea name="poll-desc"  id="poll-desc" cols="30" rows="10" placeholder='Poll Description' onChange={handleDesc} value={pollDesc} required></textarea>
         </div>
-        <OptionGenerator/>
+        <OptionGenerator options={options} setOptions={setOptions} />
         <p>Upload a CSV file to get the name of the eligible voters</p>
         <FileUpload/>
         <div className='check-box'>
-          <input type="checkbox" id="visibility" name="visibility" onChange={handleInputs} value={visibility} required/>
+          <input type="checkbox" id="visibility" name="visibility" onChange={handleVisibility} value={visibility} required/>
           <label>Allow Result Visibility to Voters</label>
         </div>
         <div className='dateTime-inputs'>
           <div className="start-event">
             <label htmlFor="">Start Date and Time :</label>
-            <input type="date" name="startDate" id="startDate" onChange={handleInputs} value={startDate} required/>
-            <input type="time" name='startTime' id='startTime' onChange={handleInputs} value={startTime} required/>
+            <input type="date" name="startDate" id="startDate" onChange={handleStartDate} value={startDate} required/>
+            <input type="time" name='startTime' id='startTime' onChange={handleStartTime} value={startTime} required/>
           </div>
           <div className="end-event">
             <label htmlFor="">End Date and Time :</label>
-            <input type="date" name="endDate" id="endDate" onChange={handleInputs} value={endDate} required/>
-            <input type="time" name='endTime' id='endTime' onChange={handleInputs} value={endTime} required/>
+            <input type="date" name="endDate" id="endDate" onChange={handleEndDate} value={endDate} required/>
+            <input type="time" name='endTime' id='endTime' onChange={handleEndTime} value={endTime} required/>
           </div>
         </div> 
         <button className='submit-btn'>Submit</button>
