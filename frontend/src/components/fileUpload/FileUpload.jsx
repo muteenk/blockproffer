@@ -17,7 +17,7 @@ function FileUpload(files, setFiles) {
     <>
         <div className='file-card'>
             <div className='file-inputs'>
-                <input type='file' id='file' name='csv-file' onChange={uploadHandler} />
+                <input type='file' id='file' name='csv-file' onChange={uploadHandler} required/>
                 <button>
                     <i className='fas fa-upload'></i>
                     Upload
