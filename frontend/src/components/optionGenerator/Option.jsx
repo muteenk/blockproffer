@@ -4,10 +4,12 @@ const Option = (props) => {
   return (
     <>
         <span className='option'>
-            {props.data} 
-            <button type="button" onClick={() => {props.deleteOption(props.data)}}>
-                <i class="fa-solid fa-circle-xmark"></i>
-            </button>
+          <span className='option-name'>
+            {props.data}
+          </span>
+          <button type="button" onClick={() => {props.deleteOption(props.data)}}>
+              <i class="fa-solid fa-circle-xmark"></i>
+          </button>
         </span>
     </>
   )

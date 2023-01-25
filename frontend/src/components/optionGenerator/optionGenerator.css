@@ -1,0 +1,126 @@
+/* Variables */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900;8..144,1000&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100;0,8..144,200;0,8..144,300;0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;0,8..144,800;0,8..144,900;1,8..144,100;1,8..144,200;1,8..144,300;1,8..144,400;1,8..144,500;1,8..144,600;1,8..144,700;1,8..144,800;1,8..144,900&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sofia+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root
+{
+    --primary-color: #fafcfa;
+    --primary-color-darker: #979797;
+    --secondary-color: #050005;
+    --tertiary-color: #00ec77;
+    --quaternary-color: #3e19c5;
+    --quinary-color: #f93842;
+    --senary-color: #fbc000;
+    --senary-color-lighter: #f0db96;
+
+    --primary-font: 'Roboto', sans-serif;
+    --secondary-font: 'Roboto Condensed', sans-serif;
+    --tertiary-font: 'Roboto Flex', sans-serif;
+    --quaternary-font: 'Roboto Mono', sans-serif;
+    --quinary-font: 'Roboto Serif', sans-serif;
+    --senary-font: 'Roboto Slab', sans-serif;
+    --septenary-font: 'Sofia Sans', sans-serif;
+
+
+}
+
+
+.optionGenerator
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 2rem 0;
+    width: 100%;
+    height: 100%;
+}
+
+.optionGenerator .poll-input label
+{
+    margin: 0;
+}
+.optionGenerator .poll-input button
+{
+    border: none;
+    width: 20%;
+    outline: none;
+    background: var(--quaternary-color);
+    cursor: pointer;
+    padding: 1rem 2rem;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-family: var(--quinary-font);
+    border-radius: 1rem;
+    margin: 2rem 0;
+    transition: border-radius 0.2s, color 0.3s ease-in-out;
+}
+
+.optionGenerator .poll-input button:hover
+{
+    background: var(--quinary-color);
+    color: var(--primary-color);
+    border-radius: 2rem;
+}
+
+.optionGenerator .poll-input button:active
+{
+    opacity: 0.8;
+}
+
+.optionGenerator #options
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 80%;
+    height: 100%;
+    margin: 1rem 0;
+}
+
+.optionGenerator .option
+{
+    border: none;
+    width: 20%;
+    outline: none;
+    background: var(--secondary-color);
+    padding: 1rem 2rem;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-family: var(--quinary-font);
+    border-radius: 1rem;
+    margin: 0.5rem 0;
+    transition: border-radius 0.2s, color 0.3s ease-in-out;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.optionGenerator .option button
+{
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    padding: 0 0 0 2rem;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-family: var(--quinary-font);
+    /* margin: 2rem 0; */
+    transition: border-radius 0.2s, color 0.3s ease-in-out;
+}
+
+.optionGenerator .option button:hover
+{
+    color: var(--quinary-color);
+}
+
+
+.optionGenerator .option button:active
+{
+    opacity: 0.8;
+}
