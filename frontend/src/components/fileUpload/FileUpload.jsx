@@ -1,23 +1,21 @@
 import React from 'react'
+import { useState } from 'react'
 import './fileUpload.css'
 
 function FileUpload(props) {
-    const uploadHandler = (e) => {
-        const file = e.target.files[0]
-        const reader = new FileReader()
-        reader.onload = () => {
-            if (reader.readyState === 2) {
-                props.setFile(reader.result)
-            }
-        }
-        reader.readAsDataURL(file)
-    }
+
 
   return (
     <>
         <div className='file-card'>
+            <p className="file-err">
+                {props.fileError}
+            </p>
+            <p className="selected-file-name">
+                {props.file.name}
+            </p>
             <div className='file-inputs'>
-                <input type='file' id='file' name='csv-file' onChange={uploadHandler} required/>
+                <input type='file' id='file' name='csv-file' onChange={props.handleFileParse} required/>
                 <button>
                     <i className='fas fa-upload'></i>
                     Upload
