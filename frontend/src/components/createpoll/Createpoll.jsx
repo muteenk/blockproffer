@@ -143,13 +143,15 @@ function Createpoll() {
         </div>
         <div className='dateTime-inputs'>
           <div className="start-event">
-            <label htmlFor="">Start Date and Time :</label>
+            <label htmlFor="">Start Date :</label>
             <input type="date" name="startDate" id="startDate" onChange={handleStartDate} value={startDate}/>
+            <label htmlFor="">Start Time :</label>
             <input type="time" name='startTime' id='startTime' onChange={handleStartTime} value={startTime}/>
           </div>
           <div className="end-event">
-            <label htmlFor="">End Date and Time :</label>
+            <label htmlFor="">End Date :</label>
             <input type="date" name="endDate" id="endDate" onChange={handleEndDate} value={endDate}/>
+            <label htmlFor="">End Time :</label>
             <input type="time" name='endTime' id='endTime' onChange={handleEndTime} value={endTime}/>
           </div>
         </div> 

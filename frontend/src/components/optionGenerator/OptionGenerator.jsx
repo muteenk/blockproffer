@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import './optionGenerator.css'
 import Option from './Option'
+import '../createpoll/createpoll.css'
 
 const OptionGenerator = (props) => {
     
@@ -28,15 +29,19 @@ const OptionGenerator = (props) => {
   return (
     <div className='optionGenerator'>
 
-        <h3>Add Options</h3>
+        <div className='poll-input'>
+            <label>Add Options</label>
+        </div>
 
         <div id="options">
             {props.options.map((e, index) => {
                 return <Option key={index} data={e} deleteOption={deleteOption}/>
             })}
         </div>
-        <input type="text" id="optionInput" onChange={optionHandler} value={optionInput}/>
-        <button type='button' onClick={addOption}>Add Option</button>
+        <div className='poll-input'>
+            <input type="text" placeholder='Add Options' id="optionInput" onChange={optionHandler} value={optionInput}/>
+            <button type='button' onClick={addOption}>Add Option</button>
+        </div>
     </div>
   )
 }

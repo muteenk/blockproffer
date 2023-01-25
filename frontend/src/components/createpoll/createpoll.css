@@ -185,10 +185,10 @@
 {
     border: none;
     outline: none;
-    background: var(--quaternary-color);
+    background: var(--tertiary-color);
     cursor: pointer;
     padding: 1rem 2rem;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     font-size: 1.5rem;
     font-family: var(--quinary-font);
     border-radius: 1rem;
@@ -205,4 +205,154 @@
 .submit-btn:active
 {
     opacity: 0.8;
+}
+
+
+
+.optionGenerator
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 2rem 0;
+    width: 100%;
+    height: 100%;
+}
+
+.optionGenerator .poll-input button
+{
+    border: none;
+    width: 20%;
+    outline: none;
+    background: var(--quaternary-color);
+    cursor: pointer;
+    padding: 1rem 2rem;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-family: var(--quinary-font);
+    border-radius: 1rem;
+    margin: 2rem 0;
+    transition: border-radius 0.2s, color 0.3s ease-in-out;
+}
+
+.optionGenerator .poll-input button:hover
+{
+    background: var(--quinary-color);
+    color: var(--primary-color);
+    border-radius: 2rem;
+}
+
+.optionGenerator .poll-input button:active
+{
+    opacity: 0.8;
+}
+
+.optionGenerator #options
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 80%;
+    height: 100%;
+    margin: 1rem 0;
+}
+
+.optionGenerator .option
+{
+    border: none;
+    width: 20%;
+    outline: none;
+    background: var(--quaternary-color);
+    padding: 1rem 2rem;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-family: var(--quinary-font);
+    border-radius: 1rem;
+    margin: 0.5rem 0;
+    transition: border-radius 0.2s, color 0.3s ease-in-out;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.optionGenerator .option button
+{
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    padding: 0 0 0 2rem;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-family: var(--quinary-font);
+    /* margin: 2rem 0; */
+    transition: border-radius 0.2s, color 0.3s ease-in-out;
+}
+
+.optionGenerator .option button:hover
+{
+    color: var(--quinary-color);
+}
+
+
+.optionGenerator .option button:active
+{
+    opacity: 0.8;
+}
+
+.dateTime-inputs
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 80%;
+    height: 100%;
+    margin: 1rem 0;
+}
+
+
+.dateTime-inputs .start-event label,
+.dateTime-inputs .end-event label
+{
+    margin: 0 0 0 0.5rem;
+    font-size: 1.5rem;
+    width: 100%;
+    height: 100%;
+    margin: 0 0 0 0.5rem;
+    font-family: var(--quinary-font);
+}
+
+.dateTime-inputs .start-event input,
+.dateTime-inputs .end-event input
+{
+    margin: 0 0 0 0.1rem;
+    width: 100%;
+    height: 20%;
+    outline: none;
+    border: none;
+    font-size: 1.5rem;
+    padding: 1rem;
+    font-family: var(--septenary-font);
+    background: var(--senary-color-lighter);
+    color: var(--primary-color-darker);
+    border: #fff 1px solid;
+    transition: border-radius 0.2s ease-in-out;
+    text-align: center;
+    cursor: pointer;
+}
+
+.dateTime-inputs .start-event input:hover,
+.dateTime-inputs .end-event input:hover
+{
+    border-radius: 1rem;
+    color: var(--quaternary-color);
+    border: var(--secondary-color) 1px solid;
 }
