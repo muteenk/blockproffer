@@ -56,12 +56,12 @@ function Livepolls() {
 
       <div className="room-sheduler">
 
-      {(roomNotFound === true) ? <><h4 className='notFound'>Room Not Found !</h4></> : ""}
 
-        <h1>Enter Room ID: </h1>
+        <label>Enter Room ID:</label>
 
         <form onSubmit={sendRoomReq}>
           <input type="text" onChange={changeRoomData} value={roomName} placeholder='Enter room ID' required/>
+          {(roomNotFound === true) ? <><h4 className='notFound'>Error : Room Not Found !</h4></> : ""}
           <button>Enter</button>
         </form>
       </div>
