@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import HeaderWithBackButton from '../header/HeaderWithBackButton'
 import './createpoll.css'
+import Papa from 'papaparse'
 import FileUpload from '../fileUpload/FileUpload'
 import OptionGenerator from '../optionGenerator/OptionGenerator';
 
@@ -21,7 +22,10 @@ function Createpoll() {
   const [endDate, setEndDate] = useState(null);
   const [endTime, setEndTime] = useState(null);
 
-  const [file, setFile] = useState(null);
+  // Hooks for handling file upload
+  const [file, setFile] = useState("");
+  const [fileError, setFileError] = useState("");
+  const [fileData, setFileData] = useState([]);
 
 
   // Function to handle form data
@@ -59,10 +63,61 @@ function Createpoll() {
   }
 
 
+
+
+  const allowedExtensions = ["csv"];
+
+    const uploadHandler = async (e) => {
+        setFileError("");
+         
+        // Check if user has entered the file
+        if (e.target.files.length) {
+            const inputFile = await e.target.files[0];
+             
+            // Check the file extensions, if it not
+            // included in the allowed extensions
+            // we show the error
+            const fileExtension = await inputFile?.type.split("/")[1];
+            if (!allowedExtensions.includes(fileExtension)) {
+                setFileError("Please input a csv file !");
+                return;
+            }
+ 
+            // If input type is correct set the state
+            return inputFile
+        }
+  }
+
+
+  const handleFileParse = async (e) => {
+         
+    // If user clicks the parse button without
+    // a file we show a error
+    let inpFile = await uploadHandler(e);
+    setFile(inpFile);
+    if (!inpFile) return setFileError("Enter a valid file");
+
+    // Initialize a reader which allows user
+    // to read any file or blob.
+    const reader = new FileReader();
+     
+    // Event listener on reader when the file
+    // loads, we parse it and set the data.
+    reader.onload = async ({ target }) => {
+        const csv =  Papa.parse(target.result, { header: true });
+        const parsedData = csv?.data;
+        console.log(parsedData)
+        setFileData(parsedData);
+    };
+    reader.readAsText(inpFile);
+}
+
+
   const onFormSubmit = (e) => {
     e.preventDefault();
+    console.log("Form Submitted")
     console.log(options);
-    console.log(file);
+    console.log(fileData);
 
   }
 
@@ -81,7 +136,7 @@ function Createpoll() {
         </div>
         <OptionGenerator options={options} setOptions={setOptions} />
         <p>Upload a CSV file to get the name of the eligible voters</p>
-        <FileUpload file={file} setFile={setFile} />
+        <FileUpload file={file} setFile={setFile} fileError={fileError} setFileError={setFileError} handleFileParse={handleFileParse} />
         <div className='check-box'>
           <input type="checkbox" id="visibility" name="visibility" onChange={handleVisibility} value={visibility} required/>
           <label>Allow Result Visibility to Voters</label>
@@ -89,13 +144,13 @@ function Createpoll() {
         <div className='dateTime-inputs'>
           <div className="start-event">
             <label htmlFor="">Start Date and Time :</label>
-            <input type="date" name="startDate" id="startDate" onChange={handleStartDate} value={startDate} required/>
-            <input type="time" name='startTime' id='startTime' onChange={handleStartTime} value={startTime} required/>
+            <input type="date" name="startDate" id="startDate" onChange={handleStartDate} value={startDate}/>
+            <input type="time" name='startTime' id='startTime' onChange={handleStartTime} value={startTime}/>
           </div>
           <div className="end-event">
             <label htmlFor="">End Date and Time :</label>
-            <input type="date" name="endDate" id="endDate" onChange={handleEndDate} value={endDate} required/>
-            <input type="time" name='endTime' id='endTime' onChange={handleEndTime} value={endTime} required/>
+            <input type="date" name="endDate" id="endDate" onChange={handleEndDate} value={endDate}/>
+            <input type="time" name='endTime' id='endTime' onChange={handleEndTime} value={endTime}/>
           </div>
         </div> 
         <button className='submit-btn'>Submit</button>
