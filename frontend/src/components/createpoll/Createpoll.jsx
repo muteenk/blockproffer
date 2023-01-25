@@ -64,10 +64,6 @@ function Createpoll() {
   }
 
 
-
-
-  const allowedExtensions = ["csv"];
-
     const uploadHandler = async (e) => {
         setFileError("");
          
@@ -78,6 +74,8 @@ function Createpoll() {
             // Check the file extensions, if it not
             // included in the allowed extensions
             // we show the error
+
+            const allowedExtensions = ["csv"];
             const fileExtension = await inputFile?.type.split("/")[1];
             if (!allowedExtensions.includes(fileExtension)) {
                 setFileError("Please input a csv file !");
@@ -107,18 +105,42 @@ function Createpoll() {
     reader.onload = async ({ target }) => {
         const csv =  Papa.parse(target.result, { header: true });
         const parsedData = csv?.data;
-        console.log(parsedData)
         setFileData(parsedData);
     };
     reader.readAsText(inpFile);
 }
 
 
-  const onFormSubmit = (e) => {
+  const onFormSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted")
-    console.log(options);
-    console.log(fileData);
+
+
+    const formData = {
+      title : pollTitle,
+      description : pollDesc,
+      pollOptions : options,
+      resultVisibility : visibility,
+      startDate,
+      startTime,
+      endDate,
+      endTime,
+      allowedUsers : fileData
+    }
+
+    console.log(formData)
+
+    const response = await fetch('http://localhost:5555/room/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+
+    console.log(response)
+    const data = await response.json();
+    console.log(data);
+
 
   }
 
