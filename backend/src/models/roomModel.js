@@ -5,8 +5,7 @@ const roomSchema = new mongoose.Schema({
     roomID : {
         type: String,
         required: true,
-        minlength: 8,
-        unique: [true, "Room already exists"]
+        unique: [true, "Room ID already exists"]
     },
     title : {
         type: String,
@@ -16,8 +15,8 @@ const roomSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    pollData : {
-        type: Object,
+    pollOptions : {
+        type: Array,
         required: true
     },
     resultVisibility : {
@@ -25,17 +24,24 @@ const roomSchema = new mongoose.Schema({
         default: false,
         required: true        
     },
-    allowedUsers : {
-        type: Array,
+    startDate : {
+        type: String,
         required: true
     },
-    startDate : {
-        type: Date,
-        default: Date.now,
+    startTime : {
+        type: String,
         required: true
     },
     endDate : {
-        type: Date,
+        type: String,
+        required: true
+    },
+    endTime : {
+        type: String,
+        required: true
+    },
+    allowedUsers : {
+        type: Array,
         required: true
     }
 })

@@ -53,11 +53,8 @@ mainRouter.post('/room/join', (req, res) => {
 mainRouter.post("/room/create", async (req, res) => {
 
     try{
-        console.log(req.body);
-        const data = new roomModel(req.body);
-
-        const result = await data.save()
-        console.log(result);
+        const data = new roomModel({...req.body, roomID: Math.floor(Math.random() * 100000000)});
+        const result = await data.save();
         res.status(201).send(result);
     }
     catch(err){
@@ -68,18 +65,18 @@ mainRouter.post("/room/create", async (req, res) => {
 
 
 
-// // Handling Get request to show all the data in the database
-// mainRouter.get("/students", async (req, res) => {
+// Handling Get request to show all the data in the database
+mainRouter.get("/", async (req, res) => {
 
-//     try{
-//         const data = await student.find();
-//         res.status(200).send(data);
-//     }
-//     catch(err){
-//         res.status(400).send(err);
-//     }
+    try{
+        const data = await roomModel.find();
+        res.status(200).send(data);
+    }
+    catch(err){
+        res.status(400).send(err);
+    }
 
-// })
+})
 
 
 // // Handling Get Request for an indivisual data 
@@ -130,26 +127,26 @@ mainRouter.post("/room/create", async (req, res) => {
 
 
 
-// // Handling Delete request to delete data
+// Handling Delete request to delete data
 
-// mainRouter.delete("/students/:id", async (req, res) => {
+mainRouter.delete("/room/destroy/:id", async (req, res) => {
 
-//     try {
+    try {
         
-//         const result = await student.findByIdAndRemove({_id: req.params.id});
+        const result = await roomModel.findByIdAndRemove({_id: req.params.id});
 
-//         if(!result){
-//             res.status(404).send();
-//         }
-//         else{
-//             res.status(200).send(result);
-//         }
+        if(!result){
+            res.status(404).send();
+        }
+        else{
+            res.status(200).send(result);
+        }
 
-//     } catch (error) {
-//         res.status(400).send(error);
-//     }
+    } catch (error) {
+        res.status(400).send(error);
+    }
 
-// })
+})
 
 
 
