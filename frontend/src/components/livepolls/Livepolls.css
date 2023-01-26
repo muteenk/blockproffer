@@ -122,3 +122,17 @@
 {
     opacity: 0.8;
 }
+
+/* Responsive Design */
+
+@media screen and (max-width: 768px)
+{
+    .room-sheduler form input
+    {
+        font-size: 1.2rem;
+
+    }
+    .room-sheduler .notFound{
+        font-size: 0.8rem;
+    }
+}
