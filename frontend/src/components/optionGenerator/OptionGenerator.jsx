@@ -13,12 +13,17 @@ const OptionGenerator = (props) => {
     }
 
     const addOption = () => {
-        if (optionInput === "") return;
+        if (optionInput === ""){
+            return;
+        }
         props.setOptions([...props.options, optionInput]);
+        setOptionInput('');
     }
 
-    const deleteOption = (index) => {
-        props.setOptions(props.options.filter((e, i) => i !== index))
+    const deleteOption = (option) => {
+        props.setOptions(props.options.filter(e => {
+            return e !== option;
+        }))
     }
 
   return (
@@ -30,7 +35,7 @@ const OptionGenerator = (props) => {
 
         <div id="options">
             {props.options.map((e, index) => {
-                return <Option i={index} data={e} deleteOption={deleteOption}/>
+                return <Option key={index} data={e} deleteOption={deleteOption}/>
             })}
         </div>
         <div className='poll-input'>

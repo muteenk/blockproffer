@@ -158,7 +158,6 @@ function Createpoll() {
           <textarea name="poll-desc"  id="poll-desc" cols="30" rows="10" placeholder='Poll Description' onChange={handleDesc} value={pollDesc} required></textarea>
         </div>
         <OptionGenerator options={options} setOptions={setOptions} />
-        <p>Upload a CSV file to get the name of the eligible voters</p>
         <FileUpload file={file} setFile={setFile} fileError={fileError} setFileError={setFileError} handleFileParse={handleFileParse} />
         <div className='check-box'>
           <input type="checkbox" id="visibility" name="visibility" onChange={handleVisibility} value={visibility} required/>
@@ -178,7 +177,9 @@ function Createpoll() {
             <input type="time" name='endTime' id='endTime' onChange={handleEndTime} value={endTime}/>
           </div>
         </div> 
-        <button className='submit-btn'>Submit</button>
+        <div className="btn-area">
+          <button className='submit-btn'>Submit</button>
+        </div>
       </form>
     </section>
   )

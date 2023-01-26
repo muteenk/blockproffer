@@ -55,7 +55,6 @@ mainRouter.post("/room/create", async (req, res) => {
     try{
         const data = new roomModel({...req.body, roomID: Math.floor(Math.random() * 100000000)});
         const result = await data.save();
-        console.log(result);
         res.status(201).send(result);
     }
     catch(err){
