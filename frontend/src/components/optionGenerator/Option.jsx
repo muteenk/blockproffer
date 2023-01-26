@@ -7,7 +7,7 @@ const Option = (props) => {
           <span className='option-name'>
             {props.data}
           </span>
-          <button type="button" onClick={() => {props.deleteOption(props.data)}}>
+          <button type="button" onClick={() => {props.deleteOption(props.i)}}>
               <i class="fa-solid fa-circle-xmark"></i>
           </button>
         </span>

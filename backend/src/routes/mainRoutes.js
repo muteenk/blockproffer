@@ -1,5 +1,6 @@
 const express = require("express");
 const roomModel = require("../models/roomModel");
+const {v4 : uuidv4} = require('uuid')
 
 // it works same as app = express()
 const mainRouter = new express.Router();
@@ -53,7 +54,8 @@ mainRouter.post('/room/join', (req, res) => {
 mainRouter.post("/room/create", async (req, res) => {
 
     try{
-        const data = new roomModel({...req.body, roomID: Math.floor(Math.random() * 100000000)});
+        const roomID = uuidv4()
+        const data = new roomModel({...req.body, roomID : roomID});
         const result = await data.save();
         res.status(201).send(result);
     }
