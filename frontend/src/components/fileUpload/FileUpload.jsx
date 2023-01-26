@@ -33,7 +33,7 @@ function FileUpload(props) {
             </p>
             <div className='file-inputs'>
                 <label>Upload a CSV file to get the name of the eligible voters</label>
-                <input type='file' id='file' name='csv-file' onChange={props.handleFileParse} required></input>
+                <input type='file' id='file' name='csv-file' accept='.csv' onChange={props.handleFileParse} required></input>
                 <i className='fas fa-upload'></i>
                 <h1>
                     Upload
