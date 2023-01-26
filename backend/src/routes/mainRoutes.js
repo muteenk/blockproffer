@@ -7,65 +7,6 @@ const mainRouter = new express.Router();
 
 
 
-let room = [
-    {
-        roomID: "12345678",
-        title: "Room 1",
-        description: "This is room 1",
-    },
-    {
-        roomID: "87654321",
-        title: "Room 2",
-        description: "This is room 2"
-    },
-    {
-        roomID: "1234567890",
-        title: "Room 3",
-        description: "This is room 3"
-    }
-];
-    
-
-
-// Handling Post request to join a room
-mainRouter.post('/room/join', (req, res) => {
-
-    const data = req.body;
-
-    let roomFound = false;
-
-    room.forEach((room) => {
-        if (room.roomID === data.roomName) {
-            roomFound = true;
-            res.status(200).send({"room" : room});
-        }
-    })
-
-    if (!roomFound){
-        res.status(404).send({"room" : "Room not found"});
-    }
-    
-});
-
-
-
-
-// Handling Post request to add rooms to the database 
-mainRouter.post("/room/create", async (req, res) => {
-
-    try{
-        const roomID = uuidv4()
-        const data = new roomModel({...req.body, roomID : roomID});
-        const result = await data.save();
-        res.status(201).send(result);
-    }
-    catch(err){
-        res.status(400).send(err);
-    }
-    
-})
-
-
 
 // Handling Get request to show all the data in the database
 mainRouter.get("/", async (req, res) => {
@@ -79,28 +20,79 @@ mainRouter.get("/", async (req, res) => {
     }
 
 })
+    
 
 
-// // Handling Get Request for an indivisual data 
-// mainRouter.get("/students/:name", async (req, res) => {
+// Handling Post request to join a room
+mainRouter.post('/room/join', async (req, res) => {
 
-//     let objName = req.params.name;
+    let room = req.body;
 
-//     try{
-//         const data = await student.find({name: objName});
+    try{
+        const data = await roomModel.find({roomID : room.roomName});
 
-//         if (!data){
-//             res.status(404).send();
-//         }
-//         else{ 
-//             res.status(200).send(data);
-//         }
-//     }
-//     catch(err){
-//         res.status(400).send(err);
-//     }
+        if (data.length === 0){
+            res.status(404).send({"room" : "Room not found"});
+        }
+        else{ 
+            res.status(200).send({"room" : data[0]});
+        }
+    }
+    catch(err){
+        res.status(400).send({"room" : "Something went wrong: " + err});
+    }
+    
+});
 
-// })
+
+
+
+// Handling Get Request for an indivisual data 
+mainRouter.get("/room/join/:id", async (req, res) => {
+
+    let roomID = req.params.id;
+
+    try{
+        const data = await roomModel.find({roomID});
+
+        if (!data){
+            res.status(404).send({"room" : "Room not found"});
+        }
+        else{ 
+            res.status(200).send({"room" : data});
+        }
+    }
+    catch(err){
+        res.status(400).send({room : "Something went wrong: " + err});
+    }
+
+})
+
+
+
+
+
+
+// Handling Post request to add rooms to the database 
+mainRouter.post("/room/create", async (req, res) => {
+
+    try{
+        const roomID = uuidv4()
+        const data = new roomModel({...req.body, roomID : roomID});
+        const result = await data.save();
+        res.status(201).send({room : result});
+    }
+    catch(err){
+        res.status(400).send({room : "Something went wrong: " + err});
+    }
+    
+})
+
+
+
+
+
+
 
 
 
