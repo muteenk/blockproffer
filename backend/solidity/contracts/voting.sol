@@ -15,7 +15,7 @@ contract pollSystem
 
     struct Options //struct containing the options for the poll
     {
-        bytes32 optionName; //name of the option/delegates
+        bytes32 optionName; //address of the option/delegate
         uint voteCount; //number of votes for the option/delegate
     }
 
