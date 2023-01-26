@@ -91,7 +91,26 @@ mainRouter.post("/room/create", async (req, res) => {
 
 
 
+// Handling Delete request to delete data
 
+mainRouter.delete("/room/destroy/:id", async (req, res) => {
+
+    try {
+        
+        const result = await roomModel.findByIdAndRemove({_id: req.params.id});
+
+        if(!result){
+            res.status(404).send();
+        }
+        else{
+            res.status(200).send(result);
+        }
+
+    } catch (error) {
+        res.status(400).send(error);
+    }
+
+})
 
 
 
@@ -119,28 +138,6 @@ mainRouter.post("/room/create", async (req, res) => {
 
 // })
 
-
-
-// Handling Delete request to delete data
-
-mainRouter.delete("/room/destroy/:id", async (req, res) => {
-
-    try {
-        
-        const result = await roomModel.findByIdAndRemove({_id: req.params.id});
-
-        if(!result){
-            res.status(404).send();
-        }
-        else{
-            res.status(200).send(result);
-        }
-
-    } catch (error) {
-        res.status(400).send(error);
-    }
-
-})
 
 
 
