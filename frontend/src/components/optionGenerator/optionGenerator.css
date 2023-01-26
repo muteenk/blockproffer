@@ -124,3 +124,24 @@
 {
     opacity: 0.8;
 }
+
+/* Responsive Design */
+
+@media screen and (max-width: 768px)
+{
+    .optionGenerator .poll-input button
+    {
+        width: 40%;
+        font-size: 0.7rem;
+    }
+
+    .optionGenerator #options
+    {
+        width: 100%;
+    }
+
+    .optionGenerator .option
+    {
+        width: 40%;
+    }
+}

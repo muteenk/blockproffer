@@ -107,3 +107,97 @@ nav
 {
     color: var(--quinary-color);
 }
+
+/* Hamburger Menu */
+
+.burger-menu
+{
+    height: 50px;
+    width: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    z-index: 101;
+    cursor: pointer;
+}
+
+.burger-bar
+{
+    width: 2.5rem;
+    height: 0.3rem;
+    background: var(--secondary-color);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu
+{
+    width: 50%;
+    height: 100vh;
+    background: var(--primary-color-darker);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 102;
+}
+
+.hidden
+{
+    display: none;
+}
+
+.visible
+{
+    display: block;
+}
+
+
+.burger-bar.clicked:nth-child(1)
+{
+    transform: rotate(45deg) translate(0.5rem, 0.5rem);
+    transition: ease-in-out 0.5s;
+}
+
+.burger-bar.clicked:nth-child(2)
+{
+    transform: scale(0.1);
+    transition: ease-in-out 0.5s;
+}
+
+.burger-bar.clicked:nth-child(3)
+{
+    transform: rotate(-45deg) translate(0.5rem, -0.5rem);
+    transition: ease-in-out 0.5s;
+}
+
+.burger-bar.unclicked
+{
+    transform: rotate(0deg) translate(0, 0);
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+}
+
+
+/* Responsive Design */
+
+@media screen and (max-width: 768px)
+{
+    nav
+    {
+        width: 100vw;
+        padding: 2rem;
+    }
+    .logo img
+    {
+        width: 50%;
+    }
+    .nav-links ul li a
+    {
+        display: none;
+    }
+    .create-btn a
+    {
+        display: none;
+    }
+}
+
