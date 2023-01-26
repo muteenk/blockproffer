@@ -34,6 +34,7 @@ function Livepolls() {
     const response= await Res;
     if (response.status === 200){
       const data = await response.json();
+      console.log(data);
       changeRoom(data);
       changeRoomNotFound(false);
     }
