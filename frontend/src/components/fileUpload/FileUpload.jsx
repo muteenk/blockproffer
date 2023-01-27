@@ -44,7 +44,7 @@ function FileUpload(props) {
                 <li className='row'>
                     <i className="fas fa-file-alt"></i>
                     <div className="details">
-                        <span className="file-name">{props.file.name}</span>
+                        <span className="file-name">{(props.file !== null) ? props.file.name : ""}</span>
                     </div>
                     {/* <div className='delete-btn'>
                         <button>
