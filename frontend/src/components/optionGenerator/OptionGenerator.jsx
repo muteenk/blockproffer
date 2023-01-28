@@ -14,7 +14,7 @@ const OptionGenerator = (props) => {
         if (optionInput === ""){
             return;
         }
-        props.setOptions([...props.options, {optionInput : 0}]);
+        props.setOptions([...props.options, {option: optionInput, votes : 0}]);
         setOptionInput('');
     }
 

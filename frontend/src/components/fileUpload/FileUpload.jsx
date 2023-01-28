@@ -14,8 +14,6 @@ function FileUpload(props) {
                 <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type='file' id='file' name='csv-file' accept='.csv' onChange={props.handleFileParse} required />
             </div>
         </div>
-<<<<<<< HEAD
-=======
         <div className="progress-area">
                 <li className='row'>
                     <i className="fas fa-file-alt"></i>
@@ -29,7 +27,6 @@ function FileUpload(props) {
                     </div> */}
                 </li>
         </div>
->>>>>>> 7df553d36773c42f3722e4f9b9de3f1bee354c95
     </>
   )
 }
