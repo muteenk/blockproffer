@@ -3,7 +3,6 @@ import HeaderWithBackButton from '../header/HeaderWithBackButton'
 import EndScreen from './EndScreen'
 import Questions from './Questions'
 import StartMenu from './StartMenu'
-import './pollquestions.css'
 import { PollContext } from '../../Helpers/Contexts'
 
 function Pollquestion() {

@@ -153,39 +153,40 @@ function Createpoll() {
           <span className="room-key-text">{(room !== null ) ? room.room.roomID : ""}</span>
         </h2>
       </div>
-      <form onSubmit={onFormSubmit}>
-        <div className='poll-input'>
-          <label>Poll Title</label>
-          <input type="text" name="poll-title" placeholder='Poll Title' id="poll-title" onChange={handleTitle} value={pollTitle} required/>
-        </div>
-        <div className='poll-input'>
-          <label>Poll Description</label>
-          <textarea name="poll-desc"  id="poll-desc" cols="30" rows="10" placeholder='Poll Description' onChange={handleDesc} value={pollDesc} required></textarea>
-        </div>
+      <div class=" flex flex-col items-center justify-center">
+    <section class="mt-16 w-10/12">
+      <form onSubmit={onFormSubmit} class="mb-3">
+
+        <label class="text-xl relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 dark:border-gray-700 dark:bg-gray-800">
+          <input type="text" name="poll-title" placeholder='Poll Title' id="poll-title" onChange={handleTitle} value={pollTitle} required class="text-xl peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:text-white sm:text-sm"/>
+          <span class="text-xl absolute left-3 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs dark:text-gray-200">Poll Title</span>
+        </label>
+        
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Poll Description</label>
+        <textarea name="poll-desc" class="text-xl resize-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="poll-desc" cols="30" rows="10" placeholder='Poll Description' onChange={handleDesc} value={pollDesc} required></textarea>
+        
         <OptionGenerator options={options} setOptions={setOptions} />
+        
         <FileUpload file={file} setFile={setFile} fileError={fileError} setFileError={setFileError} handleFileParse={handleFileParse} />
-        <div className='check-box'>
-          <input type="checkbox" id="visibility" name="visibility" onChange={handleVisibility} value={visibility} required/>
-          <label>Allow Result Visibility to Voters</label>
+        
+        <div class="flex items-center mt-4 mb-4">
+            <input id="default-checkbox" onChange={handleVisibility} value={visibility} required type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+            <label for="default-checkbox" class="ml-2 text-sm font-medium text-black-900 dark:text-black-300">Allow Result Visibility to Voters</label>
         </div>
-        <div className='dateTime-inputs'>
-          <div className="start-event">
-            <label htmlFor="">Start Date :</label>
-            <input type="date" name="startDate" id="startDate" onChange={handleStartDate} value={startDate}/>
-            <label htmlFor="">Start Time :</label>
-            <input type="time" name='startTime' id='startTime' onChange={handleStartTime} value={startTime}/>
-          </div>
-          <div className="end-event">
-            <label htmlFor="">End Date :</label>
-            <input type="date" name="endDate" id="endDate" onChange={handleEndDate} value={endDate}/>
-            <label htmlFor="">End Time :</label>
-            <input type="time" name='endTime' id='endTime' onChange={handleEndTime} value={endTime}/>
-          </div>
-        </div> 
-        <div className="btn-area">
-          <button className='submit-btn'>Submit</button>
-        </div>
+        
+        <label htmlFor="">Start Date :</label>
+        <input class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="startDate" id="startDate" onChange={handleStartDate} value={startDate}/>
+        <label htmlFor="">Start Time :</label>
+        <input type="time" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name='startTime' id='startTime' onChange={handleStartTime} value={startTime}/>
+        <label htmlFor="">End Date :</label>
+        <input type="date" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="endDate" id="endDate" onChange={handleEndDate} value={endDate}/>
+        <label htmlFor="">End Time :</label>
+        <input type="time" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name='endTime' id='endTime' onChange={handleEndTime} value={endTime}/>
+
+        <button type="button" class="mt-2 text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800">Submit</button>
       </form>
+    </section>
+    </div>
     </section>
   )
 }
