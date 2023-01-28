@@ -11,7 +11,6 @@ const OptionGenerator = (props) => {
     }
 
     const addOption = () => {
-        console.log("hello")
         if (optionInput === ""){
             return;
         }
