@@ -5,7 +5,8 @@ import Questions from './Questions'
 import StartMenu from './StartMenu'
 import { PollContext } from '../../Helpers/Contexts'
 
-function Pollquestion() {
+function Pollquestion(room) {
+
   const [question, setQuestion] = React.useState('startMenu')
   const [score, setScore] = useState(0);
   return (
@@ -13,7 +14,7 @@ function Pollquestion() {
         <HeaderWithBackButton />
           <PollContext.Provider value={{ question, setQuestion, score, setScore }}>
             {question === 'startMenu' && <StartMenu />}
-            {question === 'poll' && <Questions />}
+            {question === 'poll' && <Questions roomData={room.room} />}
             {question === 'endScreen' && <EndScreen />}
           </PollContext.Provider>
 

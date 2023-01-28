@@ -39,8 +39,7 @@ function Livepolls() {
     const response= await Res;
     if (response.status === 200){
       const data = await response.json();
-      console.log(data);
-      changeRoom(data);
+      changeRoom(data.room);
       changeRoomNotFound(false);
     }
     else{
@@ -105,7 +104,7 @@ function Livepolls() {
 
         </div>
       </form>
-    </div> : <Pollquestion/>}
+    </div> : <Pollquestion room={room} />}
 
       
     </>
