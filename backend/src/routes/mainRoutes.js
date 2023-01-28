@@ -119,27 +119,32 @@ mainRouter.delete("/room/destroy/:id", async (req, res) => {
 
 
 
-// // Handling Patch request for updating Data
+// Handling Patch request for updating Data
 
-// mainRouter.patch("/students/:id", async (req, res) => {
+mainRouter.patch("/room/upvote", async (req, res) => {
 
-//     try {
+    try {
+
+        const filter = {roomID : req.body.roomID};
+        const update = {pollOptions : req.body.pollOptions};
         
-//         const result = await student.findByIdAndUpdate({_id: req.params.id}, {$set: req.body}, {new: true});
+        let result = await roomModel.findOneAndUpdate(filter, update, {
+            returnOriginal: false
+          });
 
 
-//         if(!result){
-//             res.status(404).send();
-//         }
-//         else{
-//             res.status(200).send(result);
-//         }
+        if(!result){
+            res.status(404).send({"room": "Room Not Found"});
+        }
+        else{
+            res.status(201).send({"room" : result});
+        }
 
-//     } catch (error) {
-//         res.status(400).send(error);
-//     }
+    } catch (error) {
+        res.status(400).send({"room": "Something went wrong"});
+    }
 
-// })
+})
 
 
 
