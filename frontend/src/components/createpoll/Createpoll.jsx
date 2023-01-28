@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import HeaderWithBackButton from '../header/HeaderWithBackButton'
+import './createpoll.css'
+import '../optionGenerator/optionGenerator.css'
 import Papa from 'papaparse'
 import FileUpload from '../fileUpload/FileUpload'
 import OptionGenerator from '../optionGenerator/OptionGenerator';
-import Footer from '../footer/Footer';
 
 
 
@@ -11,6 +12,8 @@ import Footer from '../footer/Footer';
 
 
 function Createpoll() {
+  // Hook for room data
+  const [room, setRoom] = useState(null);
 
   // Hooks for handling form data
   const [pollTitle, setPollTitle] = useState('');
@@ -23,7 +26,7 @@ function Createpoll() {
   const [endTime, setEndTime] = useState(null);
 
   // Hooks for handling file upload
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState(null);
   const [fileError, setFileError] = useState("");
   const [fileData, setFileData] = useState([]);
 
@@ -55,45 +58,45 @@ function Createpoll() {
 
 
   const handleVisibility = (e) => {
-    if (visibility === true) {
-      setVisibility(false);
-    } else {
-      setVisibility(true);
+    setVisibility(visibility ? true : false);
+  }
+
+
+  const uploadHandler = (e) => {
+    setFileError("");
+      
+    // Check if user has entered the file
+    if (e.target.files.length) {
+        const inputFile = e.target.files[0];
+          
+        // Check the file extensions, if it not
+        // included in the allowed extensions
+        // we show the error
+
+        const allowedExtensions = ["csv"];
+        const fileExtension = inputFile?.type.split("/")[1];
+        if (!allowedExtensions.includes(fileExtension)) {
+            setFileError("Please input a csv file !");
+            return -1;
+        }
+
+        // If input type is correct set the state
+        return inputFile
     }
   }
 
 
-    const uploadHandler = async (e) => {
-        setFileError("");
-         
-        // Check if user has entered the file
-        if (e.target.files.length) {
-            const inputFile = await e.target.files[0];
-             
-            // Check the file extensions, if it not
-            // included in the allowed extensions
-            // we show the error
-
-            const allowedExtensions = ["csv"];
-            const fileExtension = await inputFile?.type.split("/")[1];
-            if (!allowedExtensions.includes(fileExtension)) {
-                setFileError("Please input a csv file !");
-                return;
-            }
- 
-            // If input type is correct set the state
-            return inputFile
-        }
-  }
-
-
-  const handleFileParse = async (e) => {
+  const handleFileParse = (e) => {
          
     // If user clicks the parse button without
     // a file we show a error
-    let inpFile = await uploadHandler(e);
-    setFile(inpFile);
+    let inpFile = uploadHandler(e);
+    
     if (!inpFile) return setFileError("Enter a valid file");
+
+    if (inpFile === -1) return setFileError("Please input a csv file !");
+
+    setFile(inpFile);
 
     // Initialize a reader which allows user
     // to read any file or blob.
@@ -101,13 +104,13 @@ function Createpoll() {
      
     // Event listener on reader when the file
     // loads, we parse it and set the data.
-    reader.onload = async ({ target }) => {
+    reader.onload = ({ target }) => {
         const csv =  Papa.parse(target.result, { header: true });
         const parsedData = csv?.data;
         setFileData(parsedData);
     };
     reader.readAsText(inpFile);
-}
+  }
 
 
   const onFormSubmit = async (e) => {
@@ -126,8 +129,6 @@ function Createpoll() {
       allowedUsers : fileData
     }
 
-    console.log(formData)
-
     const response = await fetch('http://localhost:5555/room/create', {
       method: 'POST',
       headers: {
@@ -136,18 +137,23 @@ function Createpoll() {
       body: JSON.stringify(formData)
     })
 
-    console.log(response)
-    const data = await response.json();
-    console.log(data);
-
-
+    if (response.status === 201){
+      const data = await response.json();
+      setRoom(data)
+    }
+    
   }
 
 
   return (
-    <>
-    <HeaderWithBackButton />
-    <div class=" flex flex-col items-center justify-center">
+    <section className='create-poll'>
+      <HeaderWithBackButton />
+      <div className="new-room">
+        <h2 className="room-key">
+          <span className="room-key-text">{(room !== null ) ? room.room.roomID : ""}</span>
+        </h2>
+      </div>
+      <div class=" flex flex-col items-center justify-center">
     <section class="mt-16 w-10/12">
       <form onSubmit={onFormSubmit} class="mb-3">
 
@@ -181,9 +187,7 @@ function Createpoll() {
       </form>
     </section>
     </div>
-
-    <Footer/>
-    </>
+    </section>
   )
 }
 
