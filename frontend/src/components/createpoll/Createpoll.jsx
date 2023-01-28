@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import HeaderWithBackButton from '../header/HeaderWithBackButton'
-import './createpoll.css'
-import '../optionGenerator/optionGenerator.css'
 import Papa from 'papaparse'
 import FileUpload from '../fileUpload/FileUpload'
 import OptionGenerator from '../optionGenerator/OptionGenerator';
