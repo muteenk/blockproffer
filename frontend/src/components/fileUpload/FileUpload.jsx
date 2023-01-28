@@ -23,11 +23,10 @@ function FileUpload(props) {
                     {/* <div className='delete-btn'>
                         <button>
                             <i className="fa-solid fa-trash"></i>
-                        </button
+                        </button>
                     </div> */}
                 </li>
-        </div>    
-
+        </div>
     </>
   )
 }
