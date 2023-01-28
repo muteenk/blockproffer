@@ -8,10 +8,8 @@ import { Dismiss } from 'flowbite';
 
 function Livepolls() {
 
-  const [roomName, changeRoomName] = useState("")
-
+  const [roomName, changeRoomName] = useState("");
   const [room, changeRoom] = useState(null);
-
   const [roomNotFound, changeRoomNotFound] = useState(false);
 
 
@@ -23,6 +21,8 @@ function Livepolls() {
   async function sendRoomReq(e){
 
     e.preventDefault();
+
+    if (roomName === "") return;
 
     console.log("new")
 
