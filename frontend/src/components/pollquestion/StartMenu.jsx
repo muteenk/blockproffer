@@ -1,5 +1,4 @@
 import React from 'react'
-import './pollquestions.css'
 import { useContext } from 'react'
 import { PollContext } from '../../Helpers/Contexts'
 
