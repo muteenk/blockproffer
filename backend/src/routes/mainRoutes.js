@@ -1,4 +1,5 @@
 const express = require("express");
+// const depContract = require("../../solidity/migrations/2_deploy_contract.js");
 const roomModel = require("../models/roomModel");
 const {v4 : uuidv4} = require('uuid')
 
@@ -81,6 +82,7 @@ mainRouter.post("/room/create", async (req, res) => {
         const roomID = uuidv4()
         const data = new roomModel({...req.body, roomID : roomID});
         const result = await data.save();
+        // depContract.addOptions(req.body.pollOptions);
         res.status(201).send({room : result});
     }
     catch(err){
