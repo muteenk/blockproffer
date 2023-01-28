@@ -27,7 +27,7 @@ const OptionGenerator = (props) => {
   return (
     <div class='mt-6'>
 
-        <div id="options">
+        <div id="options" class='flex items-center justify-center flex-wrap'>
             {props.options.map((e, index) => {
                 return <Option key={index} i={index} data={e} deleteOption={deleteOption}/>
             })}

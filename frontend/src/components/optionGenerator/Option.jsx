@@ -2,9 +2,9 @@ import React from 'react'
 
 const Option = (props) => {
   return (
-    <div class='flex items-center justify-center flex-wrap'>
-      <div class="">
-          <span class="text-white m-4 inline-block rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-black focus:outline-none focus:ring active:text-opacity-75" >
+    <div class=''>
+      <div class="mb-7">
+          <span class=" py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" >
             <span className='option-name'>
               {props.data.option}
             </span>
