@@ -77,7 +77,6 @@ function Livepolls() {
 
   return (
     <>
-      <HeaderWithBackButton />
 
     {(room == null) ? 
     <div class='flex flex-col items-center justify-center'>
