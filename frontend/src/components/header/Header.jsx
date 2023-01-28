@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import logow from '../../assets/blockproffer-logo-white-text.png'
 import logo from '../../assets/blockproffer-logo.png'
 import '../../App.css'
+import { flowbite } from 'flowbite-react';
 
 function Header() {
 
