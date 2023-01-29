@@ -7,12 +7,14 @@ import Footer from '../footer/Footer';
 
 
 
-
-
-
 function Createpoll() {
+
+
+  // ------------------ Hooks ------------------ //
+
   // Hook for room data
   const [room, setRoom] = useState(null);
+  const [roomErr, setRoomErr] = useState(null);
 
   // Hooks for handling form data
   const [pollTitle, setPollTitle] = useState('');
@@ -30,56 +32,37 @@ function Createpoll() {
   const [fileData, setFileData] = useState([]);
 
 
-  // Function to handle form data
-  const handleTitle = (e) => {
-    setPollTitle(e.target.value);
-  }
 
-  const handleDesc = (e) => {
-    setPollDesc(e.target.value);
-  }
+  // ----------- Functions to handle form data states ----------- //
 
-  const handleStartDate = (e) => {
-    setStartDate(e.target.value);
-  }
-
-  const handleStartTime = (e) => {
-    setStartTime(e.target.value);
-  }
-
-  const handleEndDate = (e) => {
-    setEndDate(e.target.value);
-  }
-
-  const handleEndTime = (e) => {
-    setEndTime(e.target.value);
-  }
+  const handleTitle = e => setPollTitle(e.target.value);
+  const handleDesc = e => setPollDesc(e.target.value);
+  const handleStartDate = e => setStartDate(e.target.value);
+  const handleStartTime = e => setStartTime(e.target.value);
+  const handleEndDate = e => setEndDate(e.target.value);
+  const handleEndTime = e => setEndTime(e.target.value);
+  const handleVisibility = e => setVisibility(visibility ? false : true);
 
 
-  const handleVisibility = (e) => {
-    setVisibility(visibility ? true : false);
-  }
+
+  // ----------- Functions for file handling ----------- //
 
 
   const uploadHandler = (e) => {
     setFileError("");
-      
-    // Check if user has entered the file
+    
+    // Checking if user has selected wrong file
     if (e.target.files.length) {
         const inputFile = e.target.files[0];
-          
-        // Check the file extensions, if it not
-        // included in the allowed extensions
-        // we show the error
 
         const allowedExtensions = ["csv"];
+
         const fileExtension = inputFile?.type.split("/")[1];
         if (!allowedExtensions.includes(fileExtension)) {
             setFileError("Please input a csv file !");
             return -1;
         }
 
-        // If input type is correct set the state
         return inputFile
     }
   }
@@ -136,15 +119,11 @@ function Createpoll() {
       body: JSON.stringify(formData)
     })
 
-    if (response.status === 201){
-      const data = await response.json();
-      console.log(data);
-      setRoom(data)
-    }
-    else{
-      console.log("Error")
-    }
-    
+    const data = await response.json();
+    console.log(data);
+
+    (response.status === 201) ? setRoom(data.room) : setRoomErr(data.room);
+
   }
 
 
@@ -153,7 +132,7 @@ function Createpoll() {
       <HeaderWithBackButton />
       <div className="new-room">
         <h2 className="room-key">
-          <span className="room-key-text">{(room !== null ) ? room.room.roomID : ""}</span>
+          <span className="room-key-text">{(room !== null ) ? room.roomID : ""}</span>
         </h2>
       </div>
       <div class=" flex flex-col items-center justify-center">
@@ -172,7 +151,7 @@ function Createpoll() {
         <FileUpload file={file} setFile={setFile} fileError={fileError} setFileError={setFileError} handleFileParse={handleFileParse} />
         
         <div class="flex items-center mt-4 mb-4">
-            <input id="default-checkbox" onChange={handleVisibility} value={visibility} required type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+            <input id="default-checkbox" onChange={handleVisibility} value={visibility} type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
             <label for="default-checkbox" class="ml-2 text-sm font-medium text-black-900 dark:text-black-300">Allow Result Visibility to Voters</label>
         </div>
         <div class='flex justify-center gap-4 items-center'>

@@ -1,15 +1,19 @@
 const express = require("express");
-// const depContract = require("../../solidity/migrations/2_deploy_contract.js");
-const roomModel = require("../models/roomModel");
 const {v4 : uuidv4} = require('uuid')
+// const depContract = require("../../solidity/migrations/2_deploy_contract.js");
 
-// it works same as app = express()
+
+// Importing the model
+const roomModel = require("../models/roomModel");
+
+
+// Creating a router
 const mainRouter = new express.Router();
 
 
 
 
-// Handling Get request to show all the data in the database
+// For Testing
 mainRouter.get("/", async (req, res) => {
 
     try{
@@ -48,34 +52,7 @@ mainRouter.post('/room/join', async (req, res) => {
 
 
 
-
-// Handling Get Request for an indivisual data 
-mainRouter.get("/room/join/:id", async (req, res) => {
-
-    let roomID = req.params.id;
-
-    try{
-        const data = await roomModel.find({roomID});
-
-        if (!data){
-            res.status(404).send({"room" : "Room not found"});
-        }
-        else{ 
-            res.status(200).send({"room" : data});
-        }
-    }
-    catch(err){
-        res.status(400).send({room : "Something went wrong: " + err});
-    }
-
-})
-
-
-
-
-
-
-// Handling Post request to add rooms to the database 
+// Handling Post request to create rooms 
 mainRouter.post("/room/create", async (req, res) => {
 
     try{
@@ -94,8 +71,7 @@ mainRouter.post("/room/create", async (req, res) => {
 
 
 
-// Handling Delete request to delete data
-
+// Handling Delete request to delete a room
 mainRouter.delete("/room/destroy/:id", async (req, res) => {
 
     try {
@@ -119,8 +95,7 @@ mainRouter.delete("/room/destroy/:id", async (req, res) => {
 
 
 
-// Handling Patch request for updating Data
-
+// Handling Patch request for updating votes
 mainRouter.patch("/room/upvote", async (req, res) => {
 
     try {
