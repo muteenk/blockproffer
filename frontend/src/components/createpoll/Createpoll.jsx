@@ -147,9 +147,9 @@ function Createpoll() {
   return (
     <section class='bg-gray-900'>
       <Header />
-      <div className="new-room">
-        <h2 className="room-key">
-          <span className="room-key-text">{(room !== null ) ? room.room.roomID : ""}</span>
+      <div class="pt-[16rem]">
+        <h2 class="text-white">
+          <span class="text-white">{(room !== null ) ? room.room.roomID : ""}</span>
         </h2>
       </div>
       <div class=" flex flex-col items-center justify-center">
