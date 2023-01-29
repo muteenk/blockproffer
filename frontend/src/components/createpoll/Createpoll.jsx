@@ -3,6 +3,7 @@ import Header from '../header/Header'
 import Papa from 'papaparse'
 import FileUpload from '../fileUpload/FileUpload'
 import OptionGenerator from '../optionGenerator/OptionGenerator';
+import Success from './Success';
 import Footer from '../footer/Footer';
 
 
@@ -132,11 +133,13 @@ function Createpoll() {
 
 
   return (
+    <>
+    {(room !== null) ? <Success roomID={room.roomID}/> : 
     <section class='bg-gray-900'>
       <Header />
       <div class="pt-[16rem]">
         <h2 class="text-white">
-          <span class="text-white">{(room !== null ) ? room.roomID : ""}</span>
+          <span class="text-white">{(roomErr !== null ) ? roomErr : ""}</span>
         </h2>
       </div>
       <div class=" flex flex-col items-center justify-center">
@@ -188,6 +191,8 @@ function Createpoll() {
     </div>
     <Footer />
     </section>
+    }
+    </>
   )
 }
 
