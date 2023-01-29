@@ -24,8 +24,6 @@ function Livepolls() {
 
     if (roomName === "") return;
 
-    console.log("new")
-
     const Res= fetch(`http://localhost:5555/room/join`, {
       method: 'POST',
       headers: {
