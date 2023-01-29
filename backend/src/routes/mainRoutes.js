@@ -33,13 +33,40 @@ const sendEmail = async (formData) => {
 
     formData.allowedUsers.map((user) => {
 
-        
+        let msg = `
+            <section>
+            <p style="font-size: 2.5rem;text-align: center;">Your BlockProffer Poll Details</p>
+            <p style="text-align: center;font-size:1.5rem;">Your Poll Token ID is </p>
+            <div style="text-align: center;">
+                <h1>
+                    ${user.Token}
+                </h1>
+            </div>
+            <div style="text-align: center;">
+            <p style="text-align: center;font-size:1.5rem;">Your Poll Date : </p>
+                <h1>
+                    ${formData.startDate} - ${formData.endDate}
+                </h1>
+            </div>
+            <div style="text-align: center;">
+            <p style="text-align: center;font-size:1.5rem;">Your Poll Timings : </p>
+                <h1>
+                    ${formData.startTime} - ${formData.endTime}
+                </h1>
+            </div>
+            <div style="text-align: center; font-size: 2.5rem;">
+                Thank You for using BlockProffer
+            </div>
+
+            </section>
+        `
 
         var mailOptions = {
             from: 'semicolonstardust@gmail.com',
             to: user.Email,
             subject: formData.title,
-            text: `Hello ${user.Name},\n${user.Token} will be your voting token for the room ${formData.roomID}.\n\nThe poll will be live: \n\tFrom : ${formData.startDate} ${formData.startTime}\n\tTo : ${formData.endDate} ${formData.endTime}\n\nRegards,\nBlock Proffer Team`
+            html: msg
+            // text: `Hello ${user.Name},\n${user.Token} will be your voting token for the room ${formData.roomID}.\n\nThe poll will be live: \n\tFrom : ${formData.startDate} ${formData.startTime}\n\tTo : ${formData.endDate} ${formData.endTime}\n\nRegards,\nBlock Proffer Team`
         };
 
         transporter.sendMail(mailOptions, function(error, info){
