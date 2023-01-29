@@ -19,6 +19,7 @@ function Createpoll() {
   const [pollTitle, setPollTitle] = useState('');
   const [pollDesc, setPollDesc] = useState('');
   const [options, setOptions] = useState([]);
+  const [sendEmail, setSendEmail] = useState(false);
   const [visibility, setVisibility] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [startTime, setStartTime] = useState(null);
@@ -40,6 +41,7 @@ function Createpoll() {
   const handleStartTime = e => setStartTime(e.target.value);
   const handleEndDate = e => setEndDate(e.target.value);
   const handleEndTime = e => setEndTime(e.target.value);
+  const handleSendEmail = e => setSendEmail(sendEmail ? false : true);
   const handleVisibility = e => setVisibility(visibility ? false : true);
 
 
@@ -99,6 +101,7 @@ function Createpoll() {
 
 
     const formData = {
+      form: {
       title : pollTitle,
       description : pollDesc,
       pollOptions : options,
@@ -108,7 +111,9 @@ function Createpoll() {
       endDate,
       endTime,
       allowedUsers : fileData
-    }
+    },
+    sendEmail
+  }
 
     const response = await fetch('http://localhost:5555/room/create', {
       method: 'POST',
@@ -152,9 +157,15 @@ function Createpoll() {
         <FileUpload file={file} setFile={setFile} fileError={fileError} setFileError={setFileError} handleFileParse={handleFileParse} />
         
         <div class="flex items-center mt-4 mb-4">
-            <input id="default-checkbox" onChange={handleVisibility} value={visibility} type="checkbox" class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-            <label for="default-checkbox" class="ml-2 text-xl font-medium text-white text-white-900 dark:text-white-700">Allow Result Visibility to Voters</label>
+            <input id="email-checkbox" onChange={handleSendEmail} value={sendEmail} type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+            <label for="email-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-white">Send Tokens to Users through Emails (from csv file)</label>
         </div>
+
+        <div class="flex items-center mt-4 mb-4">
+            <input id="visibility-checkbox" onChange={handleVisibility} value={visibility} type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+            <label for="visibility-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-white">Allow Result Visibility to Voters</label>
+        </div>
+
         <div class='flex justify-center gap-4 items-center'>
           <div class='mt-2 flex flex-col gap-6 w-full'>
             <label  class='text-xl text-white'>Start Date :</label>
