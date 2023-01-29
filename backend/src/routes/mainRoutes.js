@@ -1,5 +1,6 @@
 const express = require("express");
 const {v4 : uuidv4} = require('uuid')
+const nodemailer = require("nodemailer");
 // const depContract = require("../../solidity/migrations/2_deploy_contract.js");
 
 
@@ -9,6 +10,53 @@ const roomModel = require("../models/roomModel");
 
 // Creating a router
 const mainRouter = new express.Router();
+
+
+
+// ------------ Mailer ------------ //
+
+// Creating a transporter
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'semicolonstardust@gmail.com',
+        pass: 'boslhujlgblxowts'
+    }
+});
+
+// Sending mail
+
+const sendEmail = async (users) => {
+
+    let successCount = 0;
+    let failCount = 0;
+
+    users.map((user) => {
+        let userTok = uuidv4();    
+
+        var mailOptions = {
+            from: 'semicolonstardust@gmail.com',
+            to: user.Email,
+            subject: 'Your Voting Token',
+            text: `Hello ${user.Name},\nYour Token is ${user.Token}`
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                failCount++;
+            } else {
+                successCount++;
+            }
+        }); 
+
+    })
+
+    console.log("Success: " + successCount + "\nFail: " + failCount);
+}
+
+
+
+
 
 
 
@@ -57,7 +105,15 @@ mainRouter.post("/room/create", async (req, res) => {
 
     try{
         const roomID = uuidv4()
-        const data = new roomModel({...req.body, roomID : roomID});
+        const data = new roomModel({...req.body.form, roomID});
+
+        if (req.body.sendEmail){
+            req.body.form.allowedUsers.map((user) => {
+                user.Token = uuidv4();
+            })
+            await sendEmail(req.body.form.allowedUsers);
+        }
+
         const result = await data.save();
         // depContract.addOptions(req.body.pollOptions);
         res.status(201).send({room : result});
