@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function Success() {
+function Success(props) {
   return (
     <div class='bg-gray-900 h-screen'>
         <div class="pt-[16rem]">
@@ -15,7 +15,7 @@ function Success() {
                         <span class="p-5 cursor-pointer hover:bg-gray-900 inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                             <i class="fa-regular fa-copy"></i>
                         </span>
-                        <input class="text-center rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value='5fde0114-ef0a-42cb-a10c-ff2186e79f43'/></div>
+                        <input class="text-center rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={props.roomID}/></div>
                 </div>
             </div>
 
