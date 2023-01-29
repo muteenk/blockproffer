@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import HeaderWithBackButton from '../header/HeaderWithBackButton'
+import Header from '../header/Header'
 import EndScreen from './EndScreen'
 import Questions from './Questions'
 import StartMenu from './StartMenu'
@@ -11,7 +11,7 @@ function Pollquestion(room) {
   const [score, setScore] = useState(0);
   return (
     <section className='pollQuestions'>
-        <HeaderWithBackButton />
+        <Header />
           <PollContext.Provider value={{ question, setQuestion, score, setScore }}>
             {question === 'startMenu' && <StartMenu />}
             {question === 'poll' && <Questions roomData={room.room} />}

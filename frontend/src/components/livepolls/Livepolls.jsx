@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import HeaderWithBackButton from '../header/HeaderWithBackButton'
+import Header from '../header/Header'
 import Pollquestion from '../pollquestion/Pollquestion'
 import Footer from '../footer/Footer';
 import { Dismiss } from 'flowbite';
@@ -74,9 +74,9 @@ function Livepolls() {
 
   return (
     <>
-
+      <Header />
     {(room == null) ? 
-    <div class='flex flex-col items-center justify-center'>
+    <div class='bg-gray-900 flex flex-col items-center justify-center'>
       <form onSubmit={sendRoomReq}>
         {(roomNotFound === true) ? <><div id="alert-border-2" class="flex p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800" role="alert">
     <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
@@ -104,7 +104,7 @@ function Livepolls() {
       </form>
     </div> : <Pollquestion room={room} />}
 
-      
+    <Footer />
     </>
   )
 }

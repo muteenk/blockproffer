@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import HeaderWithBackButton from '../header/HeaderWithBackButton'
+import Header from '../header/Header'
 import Papa from 'papaparse'
 import FileUpload from '../fileUpload/FileUpload'
 import OptionGenerator from '../optionGenerator/OptionGenerator';
 import Footer from '../footer/Footer';
-
 
 
 function Createpoll() {
@@ -128,23 +127,25 @@ function Createpoll() {
 
 
   return (
-    <section className='create-poll'>
-      <HeaderWithBackButton />
-      <div className="new-room">
-        <h2 className="room-key">
-          <span className="room-key-text">{(room !== null ) ? room.roomID : ""}</span>
+    <section class='bg-gray-900'>
+      <Header />
+      <div class="pt-[16rem]">
+        <h2 class="text-white">
+          <span class="text-white">{(room !== null ) ? room.roomID : ""}</span>
         </h2>
       </div>
       <div class=" flex flex-col items-center justify-center">
     <section class="mt-16 w-8/12">
-      <form onSubmit={onFormSubmit} class="mb-3">
+      <form onSubmit={onFormSubmit} class="mt-6 mb-3">
 
-        <label class="z-auto text-xl relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 dark:border-gray-700 dark:bg-gray-800">
-          <input type="text" name="poll-title" placeholder='Poll Title' id="poll-title" onChange={handleTitle} value={pollTitle} required class="text-xl peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:text-white sm:text-sm"/>
-          <span class="text-xl absolute left-3 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs dark:text-gray-200">Poll Title</span>
-        </label>
-        
-        <textarea name="poll-desc" class="mt-8 text-xl resize-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="poll-desc" cols="30" rows="10" placeholder='Poll Description' onChange={handleDesc} value={pollDesc} required></textarea>
+        <div class="relative">
+            <input type="text" name="poll-title" id="poll-title" onChange={handleTitle} value={pollTitle} required class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+            <label for="floating_filled" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Poll Title</label>
+        </div>
+        <div class='relative'>
+          <textarea name="poll-desc" class="mt-8 text-xl resize-none block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" id="poll-desc" cols="30" rows="10" placeholder='' onChange={handleDesc} value={pollDesc} required></textarea>
+          <label for="floating_filled" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Poll Description</label>
+        </div>
         
         <OptionGenerator options={options} setOptions={setOptions} />
         
@@ -155,17 +156,17 @@ function Createpoll() {
             <label for="default-checkbox" class="ml-2 text-sm font-medium text-black-900 dark:text-black-300">Allow Result Visibility to Voters</label>
         </div>
         <div class='flex justify-center gap-4 items-center'>
-          <div class='w-full'>
-            <label htmlFor="">Start Date :</label>
-            <input class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="startDate" id="startDate" onChange={handleStartDate} value={startDate}/>
-            <label htmlFor="">Start Time :</label>
-            <input type="time" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name='startTime' id='startTime' onChange={handleStartTime} value={startTime}/>
+          <div class='mt-2 flex flex-col gap-6 w-full'>
+            <label  class='text-xl text-white'>Start Date :</label>
+            <input class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-white text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text- mb-4 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" type="date" name="startDate" id="startDate" onChange={handleStartDate} value={startDate}/>
+            <label htmlFor="" class='text-xl text-white'>Start Time :</label>
+            <input type="time" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" name='startTime' id='startTime' onChange={handleStartTime} value={startTime}/>
           </div>
-          <div class='w-full'>
-            <label htmlFor="">End Date :</label>
-            <input type="date" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="endDate" id="endDate" onChange={handleEndDate} value={endDate}/>
-            <label htmlFor="">End Time :</label>
-            <input type="time" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name='endTime' id='endTime' onChange={handleEndTime} value={endTime}/>
+          <div class='flex flex-col gap-[2rem] w-full'>
+            <label class='text-xl text-white'>End Date :</label>
+            <input type="date" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" name="endDate" id="endDate" onChange={handleEndDate} value={endDate}/>
+            <label class='text-xl text-white'>End Time :</label>
+            <input type="time" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" name='endTime' id='endTime' onChange={handleEndTime} value={endTime}/>
           </div>
         </div>
         <div class="grid justify-items-end mt-4 mb-4">
