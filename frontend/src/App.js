@@ -8,6 +8,7 @@ import Createpoll from './components/createpoll/Createpoll';
 import Livepolls from './components/livepolls/Livepolls';
 import Pollquestion from './components/pollquestion/Pollquestion';
 import HowItWorks from './components/home/HowItWorks';
+import Success from './components/createpoll/Success';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/createpolls" element={<Createpoll />} />
         <Route path="/pollquestion" element={<Pollquestion />} />
         <Route path="/howitworks" element={<HowItWorks />} />
+        <Route path="/success" element={<Success />} />
         <Route path="*" element={<PNF />} />
       </Routes>
     </>

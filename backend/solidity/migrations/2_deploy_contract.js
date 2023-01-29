@@ -1,19 +1,7 @@
 var pollSystem = artifacts.require("pollSystem");
-var listOptions = []
+var listOptions = [1,2,3,4,5,6,7];
 
-
-function addOptions(options){
-    options.map((option) => {
-    listOptions = [...listOptions, option.optionNumber];
-    })
-}
-
-function dep(deployer)
+module.exports = function(deployer)
 {
-    deployer.deploy(pollSystem, listOptions); //Feeds contract identifier and addresses of the option/delegates
-};
-
-module.exports = {
-    dep,
-    addOptions
+    deployer.deploy(pollSystem, listOptions);
 }
