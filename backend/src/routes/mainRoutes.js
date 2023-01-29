@@ -33,6 +33,8 @@ const sendEmail = async (formData) => {
 
     formData.allowedUsers.map((user) => {
 
+        
+
         var mailOptions = {
             from: 'semicolonstardust@gmail.com',
             to: user.Email,
