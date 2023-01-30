@@ -35,27 +35,28 @@ const sendEmail = async (formData) => {
 
         let msg = `
             <section>
-            <p style="font-size: 2.5rem;text-align: center;">Your BlockProffer Poll Details</p>
+            <p style="font-size: 2.5rem;text-align: center;">Hello ${user.Name} Your BlockProffer Poll Details :</p>
+            <p style="text-align: center;font-size:1.5rem;">Room : <span>${formData.roomID}</span> </p>
             <p style="text-align: center;font-size:1.5rem;">Your Poll Token ID is </p>
             <div style="text-align: center;">
-                <h1>
+                <h1 style="color: #2563eb;">
                     ${user.Token}
                 </h1>
             </div>
             <div style="text-align: center;">
             <p style="text-align: center;font-size:1.5rem;">Your Poll Date : </p>
-                <h1>
-                    ${formData.startDate} - ${formData.endDate}
+                <h1 style="color: red;">
+                    ${formData.startDate} - ${formData.startTime}
                 </h1>
             </div>
             <div style="text-align: center;">
             <p style="text-align: center;font-size:1.5rem;">Your Poll Timings : </p>
-                <h1>
-                    ${formData.startTime} - ${formData.endTime}
+                <h1 style="color: red;">
+                    ${formData.endDate} - ${formData.endTime}
                 </h1>
             </div>
             <div style="text-align: center; font-size: 2.5rem;">
-                Thank You for using BlockProffer
+                Thank You for using <span style="color: #2563eb;">BlockProffer</span>
             </div>
 
             </section>

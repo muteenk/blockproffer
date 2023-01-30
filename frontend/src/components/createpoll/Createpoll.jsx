@@ -140,6 +140,9 @@ function Createpoll() {
       <div class='pt-[9rem] text-white text-5xl text-center '>
         <h1 class='font-mono'>Create Poll</h1>
       </div>
+      <div class='pt-[9rem] text-white text-5xl text-center '>
+        <h1 class='font-mono'>{(roomErr !== null) ? roomErr : ""}</h1>
+      </div>
       <div class=" flex flex-col items-center justify-center">
     <section class="mt-16 w-8/12">
       <form onSubmit={onFormSubmit} class="mt-6 mb-3">
