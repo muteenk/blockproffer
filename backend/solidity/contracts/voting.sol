@@ -1,58 +1,123 @@
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.17;
 
-contract pollSystem
+contract pollSystem 
 {
-    struct Voter //struct containing voter parameters
+    struct PollStruct //This describes the content of each poll created in our platform.
     {
-        bool hasVoted; //true if the voter has voted
-        uint8 chosenOption; //address of the option/delegate chosen by the voter
-        uint votes; //if votes != 0, the user has already voted or has tampered with the blockchain somehow
+        uint id;
+        uint votes;
+        uint contestants;
+        bool deleted;
+        address director;
+        uint timestamp;
     }
 
-    struct Options //struct containing the options for the poll
+    struct VoterStruct //This models the information of a voter, user, or contestant on the platform.
     {
-        uint8 optionNumber; //address of the option/delegate
-        uint voteCount; //number of votes for the option/delegate
+        uint id;
+        string fullname;
+        address voter;
+        uint votes;
+        address[] voters;
     }
 
-    address public administrator; //owner of the poll
+    uint totalPolls; //This keeps track of the number of polls created on the smart contract.
+    uint totalUsers; //This carries the total number of users registered on the platform.
+    PollStruct[] polls;
 
-    mapping(address => Voter) public voters; //dictionary of voters with their addresses as keys
+    mapping(address => VoterStruct) public users; //This maps users' addresses to their respective data using the VoterStruct.
+    mapping(uint =>  mapping(address => bool)) voted; //This keeps track of the voting status of each user on different polls.
+    mapping(uint =>  mapping(address => bool)) contested; //This tells if a contestant has or has not contested for a particular poll.
+    mapping(uint =>  VoterStruct[]) contestantsIn; //This holds the data for every contestant in a given poll.
+    mapping(uint =>  bool) pollExist; //This checks if a specific poll Id exists or not on the platform.
 
-    Options[] public options; //list of options
+    //This emits information about the current user who voted
+    event Voted 
+    (
+        string fullname,
+        address indexed voter,
+        uint timestamp
+    );
 
-    constructor(uint8[] memory optionNames) //executes automatically on start
+    //This modifier prevents unregistered users from accessing unauthorized functions.
+    modifier userOnly() 
     {
-        administrator = msg.sender; //sets the administrator to one which sends the constructor its initial arguement
-
-        for (uint i = 0; i < optionNames.length; i++) //feeds all the options into the options list while setting the vote count to 0
-        {
-            options.push(Options({optionNumber: optionNames[i], voteCount: 0})); //pushes the option into the list
-        }  
+        require(users[msg.sender].voter == msg.sender, "You've gotta register first");
+        _;
     }
 
-    function canVote(address voter) public 
-    {
-        require(msg.sender == administrator,"Only the server can initiate the contract"); //A person will only be able to vote if the constructor is initialised
-        require(!voters[voter].hasVoted,"The voter already voted."); 
-        require(voters[voter].votes == 0); //should have 0 votes by default
-        
-        voters[voter].votes = 1;   
+    //This takes data about a poll from a registered user and creates a poll after validating that the information meets standards.
+    function createPoll() public userOnly {
+        PollStruct memory poll;
+        poll.id = totalPolls++;
+        poll.director = msg.sender;
+        poll.timestamp = block.timestamp;
+
+        polls.push(poll);
+        pollExist[poll.id] = true;
     }
 
-    function chosenOption(uint8 _optionNumber) public 
-    {
-        Voter storage sender = voters[msg.sender]; //sets the sender to the voter who called the function
-        require(!sender.hasVoted, "You already voted.");
-
-        sender.chosenOption = _optionNumber;
-        options[sender.chosenOption].voteCount += sender.votes;
-        sender.hasVoted = true;
+    //This function enables the poll creator to toggle the deleted key to true, thereby making the poll unavailable for circulation.
+    function deletePoll(uint id) public userOnly {
+        require(pollExist[id], "Poll not found");
+        require(polls[id].director == msg.sender, "Unauthorized entity");
+        polls[id].deleted = true;
     }
 
-    function showResult() public view
-    {
-        
+    //This returns all the polls created by every user on the platform.
+    function getPoll(uint id) public view returns (PollStruct memory) {
+        return polls[id];
+    }
+
+    //This returns information about a specific poll from our platform.
+    function getPolls() public view returns (PollStruct[] memory) {
+        return polls;
+    }
+
+    //This function enables a user to sign up with his full name and image avatar.
+    function register(
+        string memory fullname
+    ) public {
+        VoterStruct memory user;
+        user.id = totalUsers++;
+        user.fullname = fullname;
+        user.voter = msg.sender;
+        users[msg.sender] = user;
+    }
+
+    //This function gives a registered user the chance to become a contestant on a given poll provided that the poll has not started.
+    function contest(uint id) public userOnly {
+        require(pollExist[id], "Poll not found");
+        require(!contested[id][msg.sender], "Already contested");
+
+        VoterStruct memory user = users[msg.sender];
+        contestantsIn[id].push(user);
+        contested[id][msg.sender] = true;
+        polls[id].contestants++;
+    }
+
+    //This function lists out all the contestants who contested for a particular poll.
+    function listContestants(uint id) public view returns (VoterStruct[] memory) {
+        require(pollExist[id], "Poll not found");
+        return contestantsIn[id];
+    }
+
+    //This function enables a user to vote for one contestant per poll within the period stipulated for voting.
+    function vote(uint id, uint cid) public userOnly {
+        require(pollExist[id], "Poll not found");
+        require(!voted[id][msg.sender], "Already voted");
+        require(!polls[id].deleted, "Polling already started");
+
+        polls[id].votes++;
+        contestantsIn[id][cid].votes++;
+        contestantsIn[id][cid].voters.push(msg.sender);
+        voted[id][msg.sender] = true;
+
+        emit Voted (
+            users[msg.sender].fullname,
+            msg.sender,
+            block.timestamp
+        );
     }
 }
