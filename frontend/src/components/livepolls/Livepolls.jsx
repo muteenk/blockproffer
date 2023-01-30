@@ -4,9 +4,38 @@ import Header from '../header/Header'
 import Pollquestion from '../pollquestion/Pollquestion'
 import Footer from '../footer/Footer';
 import { Dismiss } from 'flowbite';
+import Chart from 'chart.js/auto';
 
 
 function Livepolls() {
+
+  const dataPie = {
+    labels: ["JavaScript", "Python", "Ruby"],
+    datasets: [
+      {
+        label: "My First Dataset",
+        data: [300, 50, 100],
+        backgroundColor: [
+          "rgb(133, 105, 241)",
+          "rgb(164, 101, 241)",
+          "rgb(101, 143, 241)",
+        ],
+        hoverOffset: 4,
+      },
+    ],
+  };
+
+  const configPie = {
+    type: "pie",
+    data: dataPie,
+    options: {},
+  };
+
+  var chartBar = new Chart(document.getElementById("chartPie"), configPie);
+
+
+
+
 
   const [roomName, changeRoomName] = useState("");
   const [room, changeRoom] = useState(null);
@@ -103,6 +132,12 @@ function Livepolls() {
         </div>
       </form>
     </div> : <Pollquestion room={room} />}
+
+    <div class="shadow-lg rounded-lg overflow-hidden">
+      <div class="py-3 px-5 bg-gray-50">Pie chart</div>
+      <canvas class="p-10" id="chartPie"></canvas>
+    </div>
+
 
     <Footer />
     </>
