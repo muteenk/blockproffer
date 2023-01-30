@@ -137,9 +137,9 @@ function Createpoll() {
     {(room !== null) ? <Success roomID={room.roomID}/> : 
     <section class='bg-gray-900'>
       <Header />
-      <div class="pt-[16rem]">
-        <h2 class="text-white">
-          <span class="text-white">{(roomErr !== null ) ? roomErr : ""}</span>
+      <div class="pt-[12rem]">
+        <h2 class="text-white text-center text-6xl">
+          Create New Poll
         </h2>
       </div>
       <div class=" flex flex-col items-center justify-center">
