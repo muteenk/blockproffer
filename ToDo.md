@@ -1,7 +1,7 @@
 [] Connecting Solidity to the Front End - (Aryan, Muteen) : Today
 [] Dont allow user to vote twice - (Muteen)
 [x] Take user voting token after logging in the room - (Neelanjan, Muteen) 
-[] Realtime Visuals - (Neelanjan) : Today
+[x] Realtime Visuals - (Neelanjan) : Today
 [] Setting the timer for voting - (Muteen, Neelanjan)
 [] Minor JavaScript Fixes
 [] After voting screen - (Neelanjan) : Today
