@@ -9,7 +9,7 @@ function Verification() {
         <h1 class="pt-[9rem] text-5xl font-bold text-center text-white">Verify your token</h1>
         <div class="pt-[5rem] pb-[18rem] w-full flex items-center flex-col gap-[2rem] justify-center">
         <h1 class="text-3xl font-bold text-center text-white">Poll Title</h1>
-        <p class="text-2xl font-bold text-center text-gray-400">Poll Description</p>
+        <p class="text-xl font-medium text-center text-gray-400">Poll Description</p>
           <div class="flex items-center justify-center flex-row">
             <div class="relative">
                 <input type="text" id="floating_filled" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
