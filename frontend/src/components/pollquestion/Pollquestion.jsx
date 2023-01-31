@@ -6,7 +6,7 @@ import StartMenu from './StartMenu'
 import Verification from './Verification'
 import { PollContext } from '../../Helpers/Contexts'
 
-function Pollquestion(room) {
+function Pollquestion(props) {
 
   const [question, setQuestion] = useState('startMenu')
   const [userToken, setUserToken] = useState(null)
@@ -17,12 +17,14 @@ function Pollquestion(room) {
     <section className='pollQuestions'>
         <Header />
 
-          {(userToken === null) ? <Verification roomData={room.room} userToken={userToken} setUserToken={setUserToken} /> : 
+          {(userToken === null) ? <Verification roomData={props.room} userToken={userToken} setUserToken={setUserToken} setUserVoted={setUserVoted} /> : 
+          <>
           <PollContext.Provider value={{ question, setQuestion, score, setScore }}>
-            {question === 'startMenu' && <StartMenu />}
-            {question === 'poll' && <Questions roomData={room.room} userVoted={userVoted} setUserVoted={setUserVoted} />}
-            {question === 'endScreen' && <VoteSuccess roomData={room.room}/>}
+            {(question === 'endScreen' || userVoted === true) && <VoteSuccess roomData={props.room}/>}
+            {(question === 'startMenu' && userVoted === false) && <StartMenu />}
+            {question === 'poll' && <Questions roomData={props.room} userToken={userToken} userVoted={userVoted} setUserVoted={setUserVoted} />}
           </PollContext.Provider>
+          </>
           }
 
     </section>
