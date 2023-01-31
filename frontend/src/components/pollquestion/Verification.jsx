@@ -14,10 +14,11 @@ function Verification(props) {
 
   function checkToken(e) {
     e.preventDefault();
-    props.roomData.allowedUsers.filter((user, index) => {
+    props.roomData.allowedUsers.map((user, index) => {
       if(user.Token === tokenInput){
         setUserNotFound(true);
-        return props.setUserToken(tokenInput);
+        props.setUserToken(tokenInput);
+        return;
       } 
     })
   }

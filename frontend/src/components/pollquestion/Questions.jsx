@@ -5,6 +5,7 @@ import { PollContext } from '../../Helpers/Contexts'
 function Questions(props) {
 
     const { setScore, score, setGameState } = useContext(PollContext);
+    const { question, setQuestion } = useContext(PollContext);
 
     const [currQuestion, setCurrQuestion] = useState(0);
     const [optionChosen, setOptionChosen] = useState("");
@@ -16,6 +17,7 @@ function Questions(props) {
 
 
     const addVote = async () => {
+        
         if (optionChosen === "") return;
 
         props.roomData.pollOptions.map((option, index) => {
@@ -39,6 +41,8 @@ function Questions(props) {
 
         if (response.status === 201){
             const data = await response.json();
+            props.setUserVoted(true);
+            setQuestion("endScreen")
             console.log(data);
         }
         else{
@@ -62,6 +66,8 @@ function Questions(props) {
     }
     
     return (
+        <>
+        {(props.userVoted) ? setQuestion("endScreen") : 
         <div class='bg-gray-900 h-screen w-full flex flex-col align-center justify-center'>
             <div class='flex justify-center align-center'>
                 <div class='flex justify-center align-center w-8/12'>
@@ -95,6 +101,8 @@ function Questions(props) {
                 </div>
             </div>
         </div>
+}
+        </>
     )
 }
 
