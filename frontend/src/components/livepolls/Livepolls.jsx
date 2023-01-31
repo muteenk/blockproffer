@@ -4,7 +4,8 @@ import Header from '../header/Header'
 import Pollquestion from '../pollquestion/Pollquestion'
 import Footer from '../footer/Footer';
 import { Dismiss } from 'flowbite';
-import { Link } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
+import Chart from 'chart.js/auto';
 
 
 function Livepolls() {
@@ -21,7 +22,39 @@ function Livepolls() {
   }
 
 
-  async function sendRoomReq(e){
+  // if (queryParameters.get('rm') !== null && room === null){
+  //   changeRoomName(queryParameters.get('rm'))
+  //   reqRoom(queryParameters.get('rm'));
+  // };
+
+
+
+
+  // async function reqRoom(roomName){
+    // const Res= fetch(`http://localhost:5555/room/join`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({roomName: roomName})
+    // });
+
+    
+
+    // const response= await Res;
+    // if (response.status === 200){
+    //   const data = await response.json();
+    //   changeRoom(data.room);
+    //   changeRoomNotFound(false);
+    // }
+    // else{
+    //   changeRoomNotFound(true);
+    // }
+  //   console.log(roomName)
+  // }
+
+
+async function sendRoomReq(e){
 
     e.preventDefault();
 
