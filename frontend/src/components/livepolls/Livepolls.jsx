@@ -1,39 +1,14 @@
 import React from 'react'
 import { useState } from 'react';
+import Chart from 'chart.js/auto';
+import { useSearchParams, Link } from 'react-router-dom';
+import { Dismiss } from 'flowbite';
 import Header from '../header/Header'
 import Pollquestion from '../pollquestion/Pollquestion'
 import Footer from '../footer/Footer';
-import { Dismiss } from 'flowbite';
-import Chart from 'chart.js/auto';
 
 
 function Livepolls() {
-
-  const dataPie = {
-    labels: ["JavaScript", "Python", "Ruby"],
-    datasets: [
-      {
-        label: "My First Dataset",
-        data: [300, 50, 100],
-        backgroundColor: [
-          "rgb(133, 105, 241)",
-          "rgb(164, 101, 241)",
-          "rgb(101, 143, 241)",
-        ],
-        hoverOffset: 4,
-      },
-    ],
-  };
-
-  const configPie = {
-    type: "pie",
-    data: dataPie,
-    options: {},
-  };
-
-  var chartBar = new Chart(document.getElementById("chartPie"), configPie);
-
-
 
 
 
@@ -47,7 +22,39 @@ function Livepolls() {
   }
 
 
-  async function sendRoomReq(e){
+  // if (queryParameters.get('rm') !== null && room === null){
+  //   changeRoomName(queryParameters.get('rm'))
+  //   reqRoom(queryParameters.get('rm'));
+  // };
+
+
+
+
+  // async function reqRoom(roomName){
+    // const Res= fetch(`http://localhost:5555/room/join`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({roomName: roomName})
+    // });
+
+    
+
+    // const response= await Res;
+    // if (response.status === 200){
+    //   const data = await response.json();
+    //   changeRoom(data.room);
+    //   changeRoomNotFound(false);
+    // }
+    // else{
+    //   changeRoomNotFound(true);
+    // }
+  //   console.log(roomName)
+  // }
+
+
+async function sendRoomReq(e){
 
     e.preventDefault();
 
@@ -117,27 +124,22 @@ function Livepolls() {
       <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
     </button>
 </div></> : ""}
-        <div class="w-full h-screen flex items-center justify-center">
-          <div clas="flex items-center justify-center">
-            <label class=" relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 dark:border-gray-700 dark:bg-gray-800" required>
-              <input type="text" onChange={changeRoomData} value={roomName} placeholder="Enter Room ID" class="w-10/12 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:text-white sm:text-sm"/>
-              <span class="absolute left-3 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs dark:text-gray-200">Enter Room ID</span>
-            </label>
+        <div class="w-full h-screen flex items-center justify-center flex-col gap-[5rem]">
+          <h1 class="text-5xl font-bold text-white">Enter Room ID</h1>
+          <div class="w-full flex items-center justify-center flex-row">
+            <div class="relative">
+                <input type="text" onChange={changeRoomData} value={roomName} id="floating_filled" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                <label for="floating_filled" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Enter Room ID</label>
+            </div>
+            <button class="ml-2 text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800">
+              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              <span class="sr-only">Icon description</span>
+            </button>
           </div>
-        <button class="ml-2 text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800">
-          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-          <span class="sr-only">Icon description</span>
-        </button>
 
         </div>
       </form>
     </div> : <Pollquestion room={room} />}
-
-    <div class="shadow-lg rounded-lg overflow-hidden">
-      <div class="py-3 px-5 bg-gray-50">Pie chart</div>
-      <canvas class="p-10" id="chartPie"></canvas>
-    </div>
-
 
     <Footer />
     </>
