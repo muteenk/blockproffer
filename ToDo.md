@@ -2,7 +2,7 @@
 [x] Dont allow user to vote twice - (Muteen)
 [x] Take user voting token after logging in the room - (Neelanjan, Muteen) 
 [x] Realtime Visuals - (Neelanjan, Muteen)
-[] Show Results only on selected Polls - (Muteen)
+[x] Show Results only on selected Polls - (Muteen)
 [] Setting the timer for voting - (Muteen, Neelanjan)
 [] Minor JavaScript Fixes
 [x] After voting screen - (Neelanjan)
