@@ -10,3 +10,8 @@
 * Expand on Landing Page : Today - (Neelanjan) : Today
 * About Us Page - (Neelanjan) : Today
 * Contact Us Page - (Neelanjan) : Today
+* Time Checks and Date Checks 
+* Options limiting to 20
+* Atleast 2 options
+* No two options are same
+* Proper Error Handling
