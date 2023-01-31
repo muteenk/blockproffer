@@ -18,6 +18,7 @@ function Verification(props) {
       if(user.Token === tokenInput){
         setUserNotFound(true);
         props.setUserToken(tokenInput);
+        if (user.hasVoted === true) props.setUserVoted(true)
         return;
       } 
     })

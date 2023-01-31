@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react'
-import { questions } from '../../Helpers/QuestionBank'
 import { PollContext } from '../../Helpers/Contexts'
 
 function Questions(props) {
@@ -23,16 +22,25 @@ function Questions(props) {
         props.roomData.pollOptions.map((option, index) => {
             if (option.optionNum === Number(optionChosen)) {
                 option.votes += 1;
+                return;
             }
         })
 
-        console.log(props.roomData.pollOptions)
+
+        props.roomData.allowedUsers.map((user, i) => {
+            if (user.Token === props.userToken) {
+                user.hasVoted = true;
+                return;
+            }
+        })
+
 
         const response = await fetch('http://localhost:5555/room/upvote', {
             method: 'PATCH',
             body: JSON.stringify({
                 roomID: props.roomData.roomID,
-                pollOptions: props.roomData.pollOptions
+                pollOptions: props.roomData.pollOptions,
+                allowedUsers: props.roomData.allowedUsers
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',

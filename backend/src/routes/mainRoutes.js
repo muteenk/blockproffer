@@ -136,6 +136,10 @@ mainRouter.post("/room/create", async (req, res) => {
         const roomID = uuidv4()
         const data = new roomModel({...req.body.form, roomID});
 
+        req.body.form.allowedUsers.map((user) => {
+            user.hasVoted = false;
+        })
+
         if (req.body.sendEmail){
             req.body.form.allowedUsers.map((user) => {
                 user.Token = uuidv4();
@@ -186,7 +190,7 @@ mainRouter.patch("/room/upvote", async (req, res) => {
     try {
 
         const filter = {roomID : req.body.roomID};
-        const update = {pollOptions : req.body.pollOptions};
+        const update = {"$set" : {pollOptions : req.body.pollOptions, allowedUsers : req.body.allowedUsers}};
         
         let result = await roomModel.findOneAndUpdate(filter, update, {
             returnOriginal: false
