@@ -9,25 +9,52 @@ import { PollContext } from '../../Helpers/Contexts'
 
 function Pollquestion(props) {
 
-  const [question, setQuestion] = useState('finalScreen')
-  const [userToken, setUserToken] = useState(null)
-  const [userVoted, setUserVoted] = useState(false)
+  const [question, setQuestion] = useState('verification')
+  // const [userToken, setUserToken] = useState(null)
+  // const [userVoted, setUserVoted] = useState(false)
   const [score, setScore] = useState(0);
+
+
+  const timerCheck = () => {
+    // let startDate = new Date(props.room.startDate);
+    // let endDate = new Date(props.room.endDate);
+    let startDate = new Date(props.room.startDate + " " + props.room.startTime)
+    let endDate = new Date(props.room.endDate + " " + props.room.endTime)
+    let currentDate = new Date();
+    
+    // if (currentDate < startDate) setQuestion("")
+
+    // console.log("Start Date : "+startDate)
+    // console.log("End Date : "+endDate)
+    // console.log("Start Time : "+startDate.getTime())
+    // console.log("End Time : "+endDate.getTime())
+
+    // const diffTime = Math.abs(endDate - startDate);
+    // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    // console.log(diffTime + " milliseconds");
+    // console.log(diffDays + " days");
+
+    // console.log(startDate)
+    // console.log(endDate)
+    // console.log()
+  
+
+    // setQuestion("startMenu")
+  }
+
 
   return (
     <section className='pollQuestions'>
         <Header />
-
-          {(userToken === null) ? <Verification roomData={props.room} userToken={userToken} setUserToken={setUserToken} setUserVoted={setUserVoted} /> : 
-          <>
-          <PollContext.Provider value={{ question, setQuestion, score, setScore }}>
-            {(question === 'endScreen' && userVoted === true) && <VoteSuccess roomData={props.room}/>}
-            {(question === 'startMenu' && userVoted === false) && <StartMenu />}
-            {question === 'poll' && <Questions roomData={props.room} userToken={userToken} userVoted={userVoted} setUserVoted={setUserVoted} />}
-            {(question === 'finalScreen') && <PollClosed roomData={props.room}/>}
-          </PollContext.Provider>
-          </>
-          }
+        <PollContext.Provider value={{ question, setQuestion, score, setScore }}>
+          {(question === 'verification') && <Verification roomData={props.room} timerCheck={timerCheck} />}
+          
+          {(question === 'startMenu') && <StartMenu />}
+          {(question === 'poll') && <Questions roomData={props.room} />}
+          {(question === 'endScreen') && <VoteSuccess roomData={props.room}/>}
+          {(question === 'finalScreen') && <PollClosed roomData={props.room}/>}
+        </PollContext.Provider>
+        
 
     </section>
   )
