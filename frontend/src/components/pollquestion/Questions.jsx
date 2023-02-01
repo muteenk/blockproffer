@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { PollContext } from '../../Helpers/Contexts'
+import HeaderWithTimer from '../header/HeaderWithTimer';
 
 function Questions(props) {
 
@@ -75,6 +76,7 @@ function Questions(props) {
     
     return (
         <>
+        <HeaderWithTimer />
         {(props.userVoted) ? setQuestion("endScreen") : 
         <div class='bg-gray-900 h-screen w-full flex flex-col align-center justify-center'>
             <div class='flex justify-center align-center'>
