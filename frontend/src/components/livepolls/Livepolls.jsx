@@ -6,7 +6,7 @@ import { Dismiss } from 'flowbite';
 import Header from '../header/Header'
 import Pollquestion from '../pollquestion/Pollquestion'
 import Footer from '../footer/Footer';
-import HeaderWithTimer from '../header/HeaderWithTimer';
+
 
 
 function Livepolls() {
