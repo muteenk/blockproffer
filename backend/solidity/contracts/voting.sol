@@ -1,58 +1,98 @@
 //SPDX-License-Identifier: UNLICENSED
+
 pragma solidity 0.8.17;
 
 contract pollSystem
 {
-    struct Voter //struct containing voter parameters
+    struct Voter
     {
-        bool hasVoted; //true if the voter has voted
-        uint8 chosenOption; //address of the option/delegate chosen by the voter
-        uint votes; //if votes != 0, the user has already voted or has tampered with the blockchain somehow
+        string currentPoll;
+        bool hasVoted;
+        uint chosenOption;
     }
 
-    struct Options //struct containing the options for the poll
+    struct Poll
     {
-        uint8 optionNumber; //address of the option/delegate
-        uint voteCount; //number of votes for the option/delegate
+        string pollID;
+        uint option1;
+        uint option2;
+        uint option3;
+        uint option4;
+        uint option5;
+        uint option6;
+        uint option7;
+        uint option8;
+        uint option9;
+        uint option10;
     }
 
-    address public administrator; //owner of the poll
+    Poll[] public polls;
 
-    mapping(address => Voter) public voters; //dictionary of voters with their addresses as keys
-
-    Options[] public options; //list of options
-
-    constructor(uint8[] memory optionNames) //executes automatically on start
+    function createPoll(string memory _pollID) public
     {
-        administrator = msg.sender; //sets the administrator to one which sends the constructor its initial arguement
+        polls.push(Poll(_pollID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+    }
 
-        for (uint i = 0; i < optionNames.length; i++) //feeds all the options into the options list while setting the vote count to 0
+    function viewResult(string memory _pollID) public view returns (Poll memory _foundPoll)
+    {
+        for(uint i = 0; i < polls.length; i++)
         {
-            options.push(Options({optionNumber: optionNames[i], voteCount: 0})); //pushes the option into the list
-        }  
+            if (keccak256(abi.encodePacked(polls[i].pollID)) == (keccak256(abi.encodePacked(_pollID))))
+            {
+                _foundPoll = polls[i];
+            }
+
+        }
     }
 
-    function canVote(address voter) public 
+    function vote(string memory _pollID, uint _chosenOption) public
     {
-        require(msg.sender == administrator,"Only the server can initiate the contract"); //A person will only be able to vote if the constructor is initialised
-        require(!voters[voter].hasVoted,"The voter already voted."); 
-        require(voters[voter].votes == 0); //should have 0 votes by default
-        
-        voters[voter].votes = 1;   
-    }
-
-    function chosenOption(uint8 _optionNumber) public 
-    {
-        Voter storage sender = voters[msg.sender]; //sets the sender to the voter who called the function
-        require(!sender.hasVoted, "You already voted.");
-
-        sender.chosenOption = _optionNumber;
-        options[sender.chosenOption].voteCount += sender.votes;
-        sender.hasVoted = true;
-    }
-
-    function showResult() public view
-    {
-        
+        for(uint i = 0; i < polls.length; i++)
+        {
+            if (keccak256(abi.encodePacked(polls[i].pollID)) == (keccak256(abi.encodePacked(_pollID))))
+            {
+                if (_chosenOption == 1)
+                {
+                    polls[i].option1++;
+                }
+                else if (_chosenOption == 2)
+                {
+                    polls[i].option2++;
+                }
+                else if (_chosenOption == 3)
+                {
+                    polls[i].option3++;
+                }
+                else if (_chosenOption == 4)
+                {
+                    polls[i].option4++;
+                }
+                else if (_chosenOption == 5)
+                {
+                    polls[i].option5++;
+                }
+                else if (_chosenOption == 6)
+                {
+                    polls[i].option6++;
+                }
+                else if (_chosenOption == 7)
+                {
+                    polls[i].option7++;
+                }
+                else if (_chosenOption == 8)
+                {
+                    polls[i].option8++;
+                }
+                else if (_chosenOption == 9)
+                {
+                    polls[i].option9++;
+                }
+                else if (_chosenOption == 10)
+                {
+                    polls[i].option10++;
+                }
+            }
+        }
     }
 }
+
