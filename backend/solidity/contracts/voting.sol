@@ -1,123 +1,98 @@
 //SPDX-License-Identifier: UNLICENSED
+
 pragma solidity 0.8.17;
 
-contract pollSystem 
+contract pollSystem
 {
-    struct PollStruct //This describes the content of each poll created in our platform.
+    struct Voter
     {
-        uint id;
-        uint votes;
-        uint contestants;
-        bool deleted;
-        address director;
-        uint timestamp;
+        string currentPoll;
+        bool hasVoted;
+        uint chosenOption;
     }
 
-    struct VoterStruct //This models the information of a voter, user, or contestant on the platform.
+    struct Poll
     {
-        uint id;
-        string fullname;
-        address voter;
-        uint votes;
-        address[] voters;
+        string pollID;
+        uint option1;
+        uint option2;
+        uint option3;
+        uint option4;
+        uint option5;
+        uint option6;
+        uint option7;
+        uint option8;
+        uint option9;
+        uint option10;
     }
 
-    uint totalPolls; //This keeps track of the number of polls created on the smart contract.
-    uint totalUsers; //This carries the total number of users registered on the platform.
-    PollStruct[] polls;
+    Poll[] public polls;
 
-    mapping(address => VoterStruct) public users; //This maps users' addresses to their respective data using the VoterStruct.
-    mapping(uint =>  mapping(address => bool)) voted; //This keeps track of the voting status of each user on different polls.
-    mapping(uint =>  mapping(address => bool)) contested; //This tells if a contestant has or has not contested for a particular poll.
-    mapping(uint =>  VoterStruct[]) contestantsIn; //This holds the data for every contestant in a given poll.
-    mapping(uint =>  bool) pollExist; //This checks if a specific poll Id exists or not on the platform.
-
-    //This emits information about the current user who voted
-    event Voted 
-    (
-        string fullname,
-        address indexed voter,
-        uint timestamp
-    );
-
-    //This modifier prevents unregistered users from accessing unauthorized functions.
-    modifier userOnly() 
+    function createPoll(string memory _pollID) public
     {
-        require(users[msg.sender].voter == msg.sender, "You've gotta register first");
-        _;
+        polls.push(Poll(_pollID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
     }
 
-    //This takes data about a poll from a registered user and creates a poll after validating that the information meets standards.
-    function createPoll() public userOnly {
-        PollStruct memory poll;
-        poll.id = totalPolls++;
-        poll.director = msg.sender;
-        poll.timestamp = block.timestamp;
+    function viewResult(string memory _pollID) public view returns (Poll memory _foundPoll)
+    {
+        for(uint i = 0; i < polls.length; i++)
+        {
+            if (keccak256(abi.encodePacked(polls[i].pollID)) == (keccak256(abi.encodePacked(_pollID))))
+            {
+                _foundPoll = polls[i];
+            }
 
-        polls.push(poll);
-        pollExist[poll.id] = true;
+        }
     }
 
-    //This function enables the poll creator to toggle the deleted key to true, thereby making the poll unavailable for circulation.
-    function deletePoll(uint id) public userOnly {
-        require(pollExist[id], "Poll not found");
-        require(polls[id].director == msg.sender, "Unauthorized entity");
-        polls[id].deleted = true;
-    }
-
-    //This returns all the polls created by every user on the platform.
-    function getPoll(uint id) public view returns (PollStruct memory) {
-        return polls[id];
-    }
-
-    //This returns information about a specific poll from our platform.
-    function getPolls() public view returns (PollStruct[] memory) {
-        return polls;
-    }
-
-    //This function enables a user to sign up with his full name and image avatar.
-    function register(
-        string memory fullname
-    ) public {
-        VoterStruct memory user;
-        user.id = totalUsers++;
-        user.fullname = fullname;
-        user.voter = msg.sender;
-        users[msg.sender] = user;
-    }
-
-    //This function gives a registered user the chance to become a contestant on a given poll provided that the poll has not started.
-    function contest(uint id) public userOnly {
-        require(pollExist[id], "Poll not found");
-        require(!contested[id][msg.sender], "Already contested");
-
-        VoterStruct memory user = users[msg.sender];
-        contestantsIn[id].push(user);
-        contested[id][msg.sender] = true;
-        polls[id].contestants++;
-    }
-
-    //This function lists out all the contestants who contested for a particular poll.
-    function listContestants(uint id) public view returns (VoterStruct[] memory) {
-        require(pollExist[id], "Poll not found");
-        return contestantsIn[id];
-    }
-
-    //This function enables a user to vote for one contestant per poll within the period stipulated for voting.
-    function vote(uint id, uint cid) public userOnly {
-        require(pollExist[id], "Poll not found");
-        require(!voted[id][msg.sender], "Already voted");
-        require(!polls[id].deleted, "Polling already started");
-
-        polls[id].votes++;
-        contestantsIn[id][cid].votes++;
-        contestantsIn[id][cid].voters.push(msg.sender);
-        voted[id][msg.sender] = true;
-
-        emit Voted (
-            users[msg.sender].fullname,
-            msg.sender,
-            block.timestamp
-        );
+    function vote(string memory _pollID, uint _chosenOption) public
+    {
+        for(uint i = 0; i < polls.length; i++)
+        {
+            if (keccak256(abi.encodePacked(polls[i].pollID)) == (keccak256(abi.encodePacked(_pollID))))
+            {
+                if (_chosenOption == 1)
+                {
+                    polls[i].option1++;
+                }
+                else if (_chosenOption == 2)
+                {
+                    polls[i].option2++;
+                }
+                else if (_chosenOption == 3)
+                {
+                    polls[i].option3++;
+                }
+                else if (_chosenOption == 4)
+                {
+                    polls[i].option4++;
+                }
+                else if (_chosenOption == 5)
+                {
+                    polls[i].option5++;
+                }
+                else if (_chosenOption == 6)
+                {
+                    polls[i].option6++;
+                }
+                else if (_chosenOption == 7)
+                {
+                    polls[i].option7++;
+                }
+                else if (_chosenOption == 8)
+                {
+                    polls[i].option8++;
+                }
+                else if (_chosenOption == 9)
+                {
+                    polls[i].option9++;
+                }
+                else if (_chosenOption == 10)
+                {
+                    polls[i].option10++;
+                }
+            }
+        }
     }
 }
+
