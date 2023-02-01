@@ -5,6 +5,7 @@ import FileUpload from '../fileUpload/FileUpload'
 import OptionGenerator from '../optionGenerator/OptionGenerator';
 import Success from './Success';
 import Footer from '../footer/Footer';
+import { useKey } from '../../useKeyHook.js';
 
 
 function Createpoll() {
@@ -69,6 +70,12 @@ function Createpoll() {
     }
   }
 
+  function handleEnter()
+  {
+    console.log("Enter pressed");
+  }
+
+  useKey("Enter", handleEnter);
 
   const handleFileParse = (e) => {
          
@@ -140,7 +147,7 @@ function Createpoll() {
       <div class='pt-[9rem] text-white text-5xl text-center '>
         <h1 class='font-mono'>Create Poll</h1>
       </div>
-      <div class='pt-[5rem] text-red text-5xl text-center '>
+      <div class='pt-[2rem] text-[#f0592f] text-xl text-center '>
         <h1 class='font-mono'>{(roomErr !== null) ? roomErr : ""}</h1>
       </div>
       <div class=" flex flex-col items-center justify-center">
