@@ -9,6 +9,7 @@ import Livepolls from './components/livepolls/Livepolls';
 import Pollquestion from './components/pollquestion/Pollquestion';
 import Success from './components/createpoll/Success';
 import PollClosed from './components/livepolls/PollClosed';
+import PollNotStarted from './components/pollquestion/PollNotStarted';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/success" element={<Success />} />
         <Route path="*" element={<PNF />} />
         <Route path='/PollClosed' element={<PollClosed />} />
+        <Route path='/PollNotStarted' element={<PollNotStarted />} />
       </Routes>
     </>
   );
