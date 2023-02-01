@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
-import { questions } from '../../Helpers/QuestionBank'
 import { PollContext } from '../../Helpers/Contexts'
+import HeaderWithTimer from '../header/HeaderWithTimer';
 
 function Questions(props) {
 
@@ -23,16 +23,25 @@ function Questions(props) {
         props.roomData.pollOptions.map((option, index) => {
             if (option.optionNum === Number(optionChosen)) {
                 option.votes += 1;
+                return;
             }
         })
 
-        console.log(props.roomData.pollOptions)
+
+        props.roomData.allowedUsers.map((user, i) => {
+            if (user.Token === props.userToken) {
+                user.hasVoted = true;
+                return;
+            }
+        })
+
 
         const response = await fetch('http://localhost:5555/room/upvote', {
             method: 'PATCH',
             body: JSON.stringify({
                 roomID: props.roomData.roomID,
-                pollOptions: props.roomData.pollOptions
+                pollOptions: props.roomData.pollOptions,
+                allowedUsers: props.roomData.allowedUsers
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -67,6 +76,7 @@ function Questions(props) {
     
     return (
         <>
+        <HeaderWithTimer />
         {(props.userVoted) ? setQuestion("endScreen") : 
         <div class='bg-gray-900 h-screen w-full flex flex-col align-center justify-center'>
             <div class='flex justify-center align-center'>

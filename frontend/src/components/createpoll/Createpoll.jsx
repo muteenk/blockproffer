@@ -5,6 +5,7 @@ import FileUpload from '../fileUpload/FileUpload'
 import OptionGenerator from '../optionGenerator/OptionGenerator';
 import Success from './Success';
 import Footer from '../footer/Footer';
+import { useKey } from '../../useKeyHook.js';
 
 
 function Createpoll() {
@@ -69,6 +70,12 @@ function Createpoll() {
     }
   }
 
+  function handleEnter()
+  {
+    console.log("Enter pressed");
+  }
+
+  useKey("Enter", handleEnter);
 
   const handleFileParse = (e) => {
          
