@@ -16,7 +16,7 @@ function PollClosed(props) {
                     <h1 class='text-6xl text-white font-bold'>Sorry the Poll for "Poll Name" has been closed</h1>
                     <p class='text-2xl text-gray-300 font-bold pt-[2rem]'>You can find the Results Right here👇</p>
                 </div>
-                {/* <Results /> */}
+                {/* <Results chartData="" roomData={props.roomData} /> */}
 
             </div>
         </div>

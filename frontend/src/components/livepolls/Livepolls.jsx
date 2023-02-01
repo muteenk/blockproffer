@@ -6,6 +6,7 @@ import { Dismiss } from 'flowbite';
 import Header from '../header/Header'
 import Pollquestion from '../pollquestion/Pollquestion'
 import Footer from '../footer/Footer';
+import HeaderWithTimer from '../header/HeaderWithTimer';
 
 
 function Livepolls() {
@@ -110,7 +111,7 @@ async function sendRoomReq(e){
 
   return (
     <>
-      <Header />
+      <HeaderWithTimer />
     {(room == null) ? 
     <div class='bg-gray-900 flex flex-col items-center justify-center'>
       <form onSubmit={sendRoomReq}>
