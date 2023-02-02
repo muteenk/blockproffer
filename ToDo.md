@@ -3,7 +3,8 @@
 [x] Take user voting token after logging in the room - (Neelanjan, Muteen) 
 [x] Realtime Visuals - (Neelanjan, Muteen)
 [x] Show Results only on selected Polls - (Muteen)
-[] Setting the timer for voting - (Muteen, Neelanjan)
+[x] Setting the timer for voting - (Muteen, Neelanjan)
+[x] Timing Bug when voting about to start
 [] Minor JavaScript Fixes
 [x] After voting screen - (Neelanjan)
 [] Fill Placeholder Text - (Neelanjan)
@@ -12,7 +13,7 @@
 [] Expand on Landing Page - (Neelanjan)
 [x] About Us Page - (Neelanjan)
 [x] Contact Us Page - (Neelanjan)
-[] Time Checks and Date Checks - (Muteen)
+[x] Time Checks and Date Checks - (Muteen)
 [] Options limiting to 20
 [] Atleast 2 options
 [] No two options are same
