@@ -106,7 +106,12 @@ function Createpoll() {
 
   const onFormSubmit = async (e) => {
     e.preventDefault();
+    setRoomErr(null);
 
+    if (options.length < 2) {
+      setRoomErr("Please add atleast 2 options")
+      alert("Please add atleast 2 options");
+    }
 
     const formData = {
       form: {
@@ -134,7 +139,7 @@ function Createpoll() {
     const data = await response.json();
     console.log(data);
 
-    (response.status === 201) ? setRoom(data.room) : setRoomErr(data.room);
+    (response.status === 201) ? setRoom(data.room) : setRoomErr("Something Went Wrong !");
 
   }
 
