@@ -51,7 +51,7 @@ function Verification(props) {
                   <span className="sr-only">Icon description</span>
               </button>
           </form>
-          <a onClick={() => {props.timerCheck()}}>test</a>
+          {/* <a onClick={() => {props.timerCheck()}}>test</a> */}
 
         </div>
     </div>

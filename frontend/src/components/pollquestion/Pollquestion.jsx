@@ -17,13 +17,23 @@ function Pollquestion(props) {
 
 
   const timerCheck = () => {
-    // let startDate = new Date(props.room.startDate);
-    // let endDate = new Date(props.room.endDate);
+    
     let startDate = new Date(props.room.startDate + " " + props.room.startTime)
     let endDate = new Date(props.room.endDate + " " + props.room.endTime)
     let currentDate = new Date();
     
-    if (currentDate < startDate) setQuestion("pollNotStarted")
+    if (currentDate < startDate) {
+      setQuestion("pollNotStarted")
+    }
+    else if (currentDate > endDate) {
+      setQuestion("pollClosed")
+    }
+    else {
+      setQuestion("startMenu")
+    }
+
+
+
 
     // console.log("Start Date : "+startDate)
     // console.log("End Date : "+endDate)

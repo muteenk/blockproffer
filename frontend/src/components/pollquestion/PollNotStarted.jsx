@@ -16,9 +16,6 @@ function PollNotStarted(props) {
     let interval;
     const startTimer = () => {
         const countdownDate = new Date(startDate + " " + startTime);
-        console.log(startDate)
-        console.log(startTime)
-        console.log(countdownDate)
 
         interval = setInterval(() => {
             const now = new Date();
