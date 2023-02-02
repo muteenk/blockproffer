@@ -26,8 +26,7 @@ function Verification(props) {
           setQuestion("endScreen")
         }
         else{
-          // props.timerCheck();
-          console.log("user found")
+          props.timerCheck();
         }
         return;
       } 

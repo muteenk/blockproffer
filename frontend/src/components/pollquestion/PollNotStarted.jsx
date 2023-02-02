@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import Timer from '../Timer/Timer'
 
 
-function PollNotStarted() {
+function PollNotStarted(props) {
 
-
+    const startDate = props.roomData.startDate;
+    const startTime = props.roomData.startTime;
 
     const [timerDays, setTimerDays] = useState()
     const [timerHours, setTimerHours] = useState()
@@ -14,35 +15,33 @@ function PollNotStarted() {
 
     let interval;
     const startTimer = () => {
-        const countdownDate = new Date('february 4, 2023').getTime();
+        const countdownDate = new Date(startDate + " " + startTime);
+        console.log(startDate)
+        console.log(startTime)
+        console.log(countdownDate)
 
         interval = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const now = new Date();
+            const distance = Math.abs(countdownDate - now);
 
             if (distance < 0) {
                 // stop our timer
                 clearInterval(interval.current);
             } else {
                 // update timer
-                setTimerDays(days);
-                setTimerHours(hours);
-                setTimerMinutes(minutes);
-                setTimerSeconds(seconds);
+                setTimerDays(Math.floor(distance / (1000 * 60 * 60 * 24)));
+                setTimerHours(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+                setTimerMinutes(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+                setTimerSeconds(Math.floor((distance % (1000 * 60)) / 1000));
             }
-        })
+        }, 1000)
 
     }
 
     // componentDidMount
     useEffect(() => {
         startTimer();
-    })
+    }, [])
 
 
   return (

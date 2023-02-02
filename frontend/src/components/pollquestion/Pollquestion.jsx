@@ -4,6 +4,7 @@ import VoteSuccess from './VoteSuccess'
 import Questions from './Questions'
 import StartMenu from './StartMenu'
 import Verification from './Verification'
+import PollNotStarted from './PollNotStarted'
 import PollClosed from './PollClosed'
 import { PollContext } from '../../Helpers/Contexts'
 
@@ -22,7 +23,7 @@ function Pollquestion(props) {
     let endDate = new Date(props.room.endDate + " " + props.room.endTime)
     let currentDate = new Date();
     
-    // if (currentDate < startDate) setQuestion("")
+    if (currentDate < startDate) setQuestion("pollNotStarted")
 
     // console.log("Start Date : "+startDate)
     // console.log("End Date : "+endDate)
@@ -48,7 +49,7 @@ function Pollquestion(props) {
         <Header />
         <PollContext.Provider value={{ question, setQuestion, score, setScore }}>
           {(question === 'verification') && <Verification roomData={props.room} timerCheck={timerCheck} />}
-          
+          {(question === 'pollNotStarted') && <PollNotStarted roomData={props.room} />}
           {(question === 'startMenu') && <StartMenu />}
           {(question === 'poll') && <Questions roomData={props.room} />}
           {(question === 'endScreen') && <VoteSuccess roomData={props.room}/>}
