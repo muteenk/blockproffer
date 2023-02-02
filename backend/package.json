@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/Semicolon-Stardust/blockproffer",
   "dependencies": {
-    "@truffle/hdwallet-provider": "^2.1.5",
+    "alchemy-sdk": "^2.4.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
