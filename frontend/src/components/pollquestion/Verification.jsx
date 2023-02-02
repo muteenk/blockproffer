@@ -24,12 +24,9 @@ function Verification(props) {
       if(user.Token === tokenInput){
         props.setUserToken(tokenInput)
         if (user.hasVoted) {
-          setQuestion("endScreen")
+          props.setUserVoted(true)
         }
-        else{
-          console.log("User found")
-          props.timerCheck();
-        }
+        props.timerCheck();
         return;
       } 
     })
