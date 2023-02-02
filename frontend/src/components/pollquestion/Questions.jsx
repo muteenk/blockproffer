@@ -60,21 +60,8 @@ function Questions(props) {
         }
     }
     
-
-    const nextQuestion = () => {
-        setCurrQuestion(currQuestion + 1)
-        // alert("Your score is " + score)
-    }
-
-    const prevQuestion = () => {
-        setCurrQuestion(currQuestion - 1)
-    }
-
-    
-    const finishPoll = () => {
-        setGameState("endScreen")
-    }
-
+    const endDate = props.roomData.endDate;
+    const endTime = props.roomData.endTime;
 
 
     const [timerDays, setTimerDays] = useState()
@@ -84,11 +71,11 @@ function Questions(props) {
 
     let interval;
     const startTimer = () => {
-        const countdownDate = new Date('february 4, 2023').getTime();
+        const countdownDate = new Date(endDate + " " + endTime);
 
         interval = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
+            const now = new Date();
+            const distance = Math.abs(countdownDate - now);
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -105,14 +92,14 @@ function Questions(props) {
                 setTimerMinutes(minutes);
                 setTimerSeconds(seconds);
             }
-        })
+        }, 1000)
 
     }
 
     // componentDidMount
     useEffect(() => {
         startTimer();
-    })
+    }, [])
     
     return (
 
