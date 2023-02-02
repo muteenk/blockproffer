@@ -9,12 +9,12 @@
 [x] After voting screen - (Neelanjan)
 [] Fill Placeholder Text - (Neelanjan)
 [x] End Screen and Visualisation - (Neelanjan)
-[] Final Result Chart - (Neelanjan)
-[] Expand on Landing Page - (Neelanjan)
+[x] Final Result Chart - (Neelanjan)
+[x] Expand on Landing Page - (Neelanjan)
 [x] About Us Page - (Neelanjan)
 [x] Contact Us Page - (Neelanjan)
 [x] Time Checks and Date Checks - (Muteen)
-[] Options limiting to 20
+[] Options limiting to 10
 [] Atleast 2 options
 [] No two options are same
 [] Proper Error Handling
