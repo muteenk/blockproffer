@@ -12,7 +12,7 @@
 [] Expand on Landing Page - (Neelanjan)
 [x] About Us Page - (Neelanjan)
 [x] Contact Us Page - (Neelanjan)
-[] Time Checks and Date Checks 
+[] Time Checks and Date Checks - (Muteen)
 [] Options limiting to 20
 [] Atleast 2 options
 [] No two options are same
