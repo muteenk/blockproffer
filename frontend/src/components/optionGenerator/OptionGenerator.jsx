@@ -5,15 +5,30 @@ import Option from './Option'
 const OptionGenerator = (props) => {
     
     const [optionInput, setOptionInput] = useState('');
+    const [optionErr, setOptionErr] = useState('');
 
     const optionHandler = (e) => {
         setOptionInput(e.target.value)
     }
 
     const addOption = () => {
-        if (optionInput === ""){
-            return;
-        }
+        setOptionErr('');
+
+        if (optionInput === "") return;
+
+        if (props.options.length >= 10) return setOptionErr("You can't have more than 10 options");
+
+        let similarOptionFound = false;
+        props.options.forEach((e) => {
+            if (e.option === optionInput) {
+                setOptionErr("You can't have duplicate options");
+                similarOptionFound = true;
+                return;
+            }
+        })
+
+        if (similarOptionFound) return;
+
         props.setOptions([...props.options, {optionNum: props.options.length ,option: optionInput, votes : 0}]);
         setOptionInput('');
     }
@@ -31,6 +46,9 @@ const OptionGenerator = (props) => {
             {props.options.map((e, index) => {
                 return <Option key={index} i={index} data={e} deleteOption={deleteOption}/>
             })}
+        </div>
+        <div className="option-error">
+            {(optionErr !== "") ? <p className="text-red-500 text-sm">{optionErr}</p> : null}
         </div>
         <div class="relative">
             <input type="text" id="optionInput" onChange={optionHandler} value={optionInput} class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
