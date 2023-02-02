@@ -1,9 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+import { PollContext } from '../../Helpers/Contexts'
 import { Link } from 'react-router-dom'
 import Timer from '../Timer/Timer'
 
 
 function PollNotStarted(props) {
+
+    const { question, setQuestion } = useContext(PollContext);
 
     const startDate = props.roomData.startDate;
     const startTime = props.roomData.startTime;
@@ -24,6 +27,7 @@ function PollNotStarted(props) {
             if (distance < 0) {
                 // stop our timer
                 clearInterval(interval.current);
+                setQuestion("startMenu")
             } else {
                 // update timer
                 setTimerDays(Math.floor(distance / (1000 * 60 * 60 * 24)));
