@@ -34,7 +34,7 @@ function Results(props) {
     ]
   }
   else{
-    labels = ["No Votes Yet"]
+    labels = ["No one has voted"]
     dataSet = [1]
     bg = ["#323232"]
   } 

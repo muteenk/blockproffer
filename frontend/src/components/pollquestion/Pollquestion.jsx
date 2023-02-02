@@ -21,43 +21,17 @@ function Pollquestion(props) {
     let startDate = new Date(props.room.startDate + " " + props.room.startTime)
     let endDate = new Date(props.room.endDate + " " + props.room.endTime)
     let currentDate = new Date();
-
-    console.log(2);
     
     if (currentDate < startDate) {
       setQuestion("pollNotStarted")
-      console.log(3)
     }
     else if (currentDate > endDate) {
       setQuestion("finalScreen")
-      console.log(4)
     }
     else {
       setQuestion("startMenu")
-      console.log(5)
     }
 
-
-    console.log(6)
-
-
-
-    // console.log("Start Date : "+startDate)
-    // console.log("End Date : "+endDate)
-    // console.log("Start Time : "+startDate.getTime())
-    // console.log("End Time : "+endDate.getTime())
-
-    // const diffTime = Math.abs(endDate - startDate);
-    // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-    // console.log(diffTime + " milliseconds");
-    // console.log(diffDays + " days");
-
-    // console.log(startDate)
-    // console.log(endDate)
-    // console.log()
-  
-
-    // setQuestion("startMenu")
   }
 
 
