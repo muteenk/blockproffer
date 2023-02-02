@@ -4,11 +4,8 @@ import Header from '../header/Header';
 import Timer from '../Timer/Timer';
 
 function Questions(props) {
-
-    const { setScore, score, setGameState } = useContext(PollContext);
     const { question, setQuestion } = useContext(PollContext);
 
-    const [currQuestion, setCurrQuestion] = useState(0);
     const [optionChosen, setOptionChosen] = useState("");
 
     const selectOption = (e) => {
@@ -18,8 +15,11 @@ function Questions(props) {
 
 
     const addVote = async () => {
+        console.log(1)
         
         if (optionChosen === "") return;
+
+        console.log(optionChosen)
 
         props.roomData.pollOptions.map((option, index) => {
             if (option.optionNum === Number(optionChosen)) {
@@ -29,12 +29,17 @@ function Questions(props) {
         })
 
 
+
         props.roomData.allowedUsers.map((user, i) => {
+            console.log(user)
             if (user.Token === props.userToken) {
+                console.log(user)
                 user.hasVoted = true;
                 return;
             }
         })
+
+        console.log(props.roomData.allowedUsers)
 
 
         const response = await fetch('http://localhost:5555/room/upvote', {
@@ -49,11 +54,13 @@ function Questions(props) {
             },
         })
 
+        console.log(response.status)
+
         if (response.status === 201){
             const data = await response.json();
-            props.setUserVoted(true);
-            setQuestion("endScreen")
             console.log(data);
+            setQuestion("endScreen")
+            
         }
         else{
             console.log("Error")
@@ -82,9 +89,10 @@ function Questions(props) {
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            if (distance < 0) {
+            if (distance <= 0) {
                 // stop our timer
                 clearInterval(interval.current);
+                setQuestion("finalScreen")
             } else {
                 // update timer
                 setTimerDays(days);

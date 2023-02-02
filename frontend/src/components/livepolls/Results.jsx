@@ -8,6 +8,7 @@ function Results(props) {
   let labels = [];
   let dataSet = [];
   let totalVotes = 0;
+  let bg = [];
 
   props.roomData.pollOptions.map((option, index) => {
     labels = [...labels, option.option]
@@ -15,39 +16,35 @@ function Results(props) {
     totalVotes += option.votes
   })
 
-  dataSet.map((data, index) => {
-    dataSet[index] = (data / totalVotes) * 100
-  })
+  if (totalVotes > 0){
+    dataSet.map((data, index) => {
+      return (data / totalVotes) * 100
+    })
+    bg = [
+      "#ff5758",
+      "#10b7ba",
+      "#ffdd0d",
+      "#b24eb7",
+      "#1e766f",
+      "#345b6d",
+      "#4d2554",
+      "#ab6274",
+      "#d05b49",
+      "#d56b44",
+    ]
+  }
+  else{
+    labels = ["No Votes Yet"]
+    dataSet = [1]
+    bg = ["#323232"]
+  } 
 
 const data = {
   labels: labels,
   datasets: [
     {
       label: 'title',
-      backgroundColor: [
-        "#ff5758",
-        "#bacaa7",
-        "#10b7ba",
-        "#ffdd0d",
-        "#b24eb7",
-        "#feeae3",
-        "#cabff0",
-        "#f0e6c9",
-        "#f89b25",
-        "#28e0c4",
-        "#c1effc",
-        "#1e766f",
-        "#345b6d",
-        "#4d2554",
-        "#f3f61f",
-        "#ab6274",
-        "#f9bc37",
-        "#d05b49",
-        "#d7ebf3",
-        "#9bf8c2",
-        "#f9c7c7",
-        "#d56b44",
-      ],
+      backgroundColor: bg,
       borderColor: "#d3d7e5",
       data: dataSet,
       offset: true,

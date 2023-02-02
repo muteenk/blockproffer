@@ -22,10 +22,12 @@ function Verification(props) {
 
     props.roomData.allowedUsers.map((user, index) => {
       if(user.Token === tokenInput){
+        props.setUserToken(tokenInput)
         if (user.hasVoted) {
           setQuestion("endScreen")
         }
         else{
+          console.log("User found")
           props.timerCheck();
         }
         return;

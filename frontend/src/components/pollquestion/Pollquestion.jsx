@@ -11,27 +11,34 @@ import { PollContext } from '../../Helpers/Contexts'
 function Pollquestion(props) {
 
   const [question, setQuestion] = useState('verification')
-  // const [userToken, setUserToken] = useState(null)
+  const [userToken, setUserToken] = useState(null)
   // const [userVoted, setUserVoted] = useState(false)
   const [score, setScore] = useState(0);
 
 
   const timerCheck = () => {
-    
+
     let startDate = new Date(props.room.startDate + " " + props.room.startTime)
     let endDate = new Date(props.room.endDate + " " + props.room.endTime)
     let currentDate = new Date();
+
+    console.log(2);
     
     if (currentDate < startDate) {
       setQuestion("pollNotStarted")
+      console.log(3)
     }
     else if (currentDate > endDate) {
-      setQuestion("pollClosed")
+      setQuestion("finalScreen")
+      console.log(4)
     }
     else {
       setQuestion("startMenu")
+      console.log(5)
     }
 
+
+    console.log(6)
 
 
 
@@ -58,10 +65,10 @@ function Pollquestion(props) {
     <section className='pollQuestions'>
         <Header />
         <PollContext.Provider value={{ question, setQuestion, score, setScore }}>
-          {(question === 'verification') && <Verification roomData={props.room} timerCheck={timerCheck} />}
+          {(question === 'verification') && <Verification roomData={props.room} timerCheck={timerCheck} userToken={userToken} setUserToken={setUserToken} />}
           {(question === 'pollNotStarted') && <PollNotStarted roomData={props.room} />}
           {(question === 'startMenu') && <StartMenu />}
-          {(question === 'poll') && <Questions roomData={props.room} />}
+          {(question === 'poll') && <Questions roomData={props.room} userToken={userToken} />}
           {(question === 'endScreen') && <VoteSuccess roomData={props.room}/>}
           {(question === 'finalScreen') && <PollClosed roomData={props.room}/>}
         </PollContext.Provider>
