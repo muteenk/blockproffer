@@ -1,5 +1,6 @@
 import React from 'react'
 import Results from '../livepolls/Results'
+import { Link } from 'react-router-dom'
 
 function VoteSuccess(props) {
     return (
@@ -9,6 +10,17 @@ function VoteSuccess(props) {
         </div>
         <div class="text-5xl pt-[1rem] pb-[1rem] font-bold text-center text-green-600">Thank You for Voting</div>
         { (props.roomData.resultVisibility) ? <Results chartData="" roomData={props.roomData} /> : "" }
+        <div class='flex justify-center mt-7'>
+            <Link to="/createpolls" class='text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800'>
+                Make Your Own Polls
+            </Link>
+            <Link to="/" class='ext-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800'>
+                Back to Home
+            </Link>
+            <Link to="/LivePolls" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                Head to Other Live Poll
+            </Link>
+        </div>
     </div>
     )
     }
