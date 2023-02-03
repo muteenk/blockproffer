@@ -23,6 +23,10 @@ function Createpoll() {
   const [options, setOptions] = useState([]);
   const [sendEmail, setSendEmail] = useState(false);
   const [visibility, setVisibility] = useState(false);
+
+  // Hooks for handling date and time
+  const [dateErr, setDateErr] = useState("");
+  const [timeErr, setTimeErr] = useState("");
   const [startDate, setStartDate] = useState(null);
   const [startTime, setStartTime] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -39,12 +43,16 @@ function Createpoll() {
 
   const handleTitle = e => setPollTitle(e.target.value);
   const handleDesc = e => setPollDesc(e.target.value);
+  const handleVisibility = e => setVisibility(visibility ? false : true);
+  const handleSendEmail = e => setSendEmail(sendEmail ? false : true);
+
+  // ----------- Functions to handle date and time states ----------- //
   const handleStartDate = e => setStartDate(e.target.value);
   const handleStartTime = e => setStartTime(e.target.value);
   const handleEndDate = e => setEndDate(e.target.value);
   const handleEndTime = e => setEndTime(e.target.value);
-  const handleSendEmail = e => setSendEmail(sendEmail ? false : true);
-  const handleVisibility = e => setVisibility(visibility ? false : true);
+  
+ 
 
 
 

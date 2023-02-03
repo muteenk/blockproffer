@@ -5,6 +5,7 @@
 [x] Show Results only on selected Polls - (Muteen)
 [x] Setting the timer for voting - (Muteen, Neelanjan)
 [x] Timing Bug when voting about to start
+[] Timing Selector
 [] Minor JavaScript Fixes
 [x] After voting screen - (Neelanjan)
 [] Fill Placeholder Text - (Neelanjan)
