@@ -28,3 +28,8 @@
 [] Documentation - (Neelanjan, Rishit)
 [] Dockerize
 [] Deploy
+
+
+```csv
+Name,Mail
+```
