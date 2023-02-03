@@ -148,7 +148,7 @@ async function sendRoomReq(e){
       </div> 
     </div>
     
-    : <Pollquestion room={room} />}
+    : <Pollquestion room={room}/>}
 
     <Footer />
     </>

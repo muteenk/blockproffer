@@ -1,12 +1,11 @@
 const express = require("express");
+require('dotenv').config()
 const {v4 : uuidv4} = require('uuid')
+const short = require('short-uuid');
 const nodemailer = require("nodemailer");
-// const depContract = require("../../solidity/migrations/2_deploy_contract.js");
-
 
 // Importing the model
 const roomModel = require("../models/roomModel");
-
 
 // Creating a router
 const mainRouter = new express.Router();
@@ -19,8 +18,8 @@ const mainRouter = new express.Router();
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'semicolonstardust@gmail.com',
-        pass: 'boslhujlgblxowts'
+        user: process.env.EMAIL,
+        pass: process.env.EMAIL_PASS
     }
 });
 
@@ -142,7 +141,7 @@ mainRouter.post("/room/create", async (req, res) => {
 
         if (req.body.sendEmail){
             req.body.form.allowedUsers.map((user) => {
-                user.Token = uuidv4();
+                user.Token = short.generate();
             })
             await sendEmail({...req.body.form, roomID});
         }
