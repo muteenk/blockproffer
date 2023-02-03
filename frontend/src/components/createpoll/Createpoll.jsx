@@ -189,15 +189,15 @@ function Createpoll() {
         <div class='flex justify-center gap-4 items-center'>
           <div class='mt-2 flex flex-col gap-6 w-full'>
             <label  class='text-xl text-white'>Start Date :</label>
-            <input class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-white bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text- mb-4 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" type="date" name="startDate" id="startDate" onChange={handleStartDate} value={startDate}/>
+            <input class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-white bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text- mb-4 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" type="date" name="startDate" id="startDate" onChange={handleStartDate} value={startDate} min={new Date().toISOString().substr(0, 10)} />
             <label htmlFor="" class='text-xl text-white'>Start Time :</label>
-            <input type="time" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" name='startTime' id='startTime' onChange={handleStartTime} value={startTime}/>
+            <input type="time" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" name='startTime' id='startTime' onChange={handleStartTime} value={startTime} min={new Date().toTimeString().substr(0, 5)} />
           </div>
           <div class='flex flex-col gap-[2rem] w-full'>
             <label class='text-xl text-white'>End Date :</label>
-            <input type="date" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" name="endDate" id="endDate" onChange={handleEndDate} value={endDate}/>
+            <input type="date" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" name="endDate" id="endDate" onChange={handleEndDate} value={endDate} min={new Date(startDate).toISOString().substr(0, 10)} />
             <label class='text-xl text-white'>End Time :</label>
-            <input type="time" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" name='endTime' id='endTime' onChange={handleEndTime} value={endTime}/>
+            <input type="time" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" name='endTime' id='endTime' onChange={handleEndTime} value={endTime} min={new Date(`${startDate} ${startTime}`).toTimeString().substr(0, 5)}/>
           </div>
         </div>
         <div class="grid justify-items-end mt-4 mb-4">
