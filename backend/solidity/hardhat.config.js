@@ -1,5 +1,9 @@
 require("@nomiclabs/hardhat-waffle");
-require('dotenv').config()
+require('dotenv').config({path: "../.env"})
+
+
+const DEPLOYER_KEY = process.env.DEPLOYER_KEY 
+const ENDPOINT_URL = process.env.ENDPOINT_URL
 
 module.exports = 
 {
@@ -9,12 +13,12 @@ module.exports =
     hardhat: {},
     
     localhost: 
-    {url: 'http://127.0.0.1:5500'},
+    {url: 'http://127.0.0.1:8545'},
 
     goerli: 
     {
-      url: process.env.ENDPOINT_URL,
-      accounts: [process.env.DEPLOYER_KEY]
+      url: ENDPOINT_URL,
+      accounts: [DEPLOYER_KEY]
     }
   },
 
@@ -33,8 +37,10 @@ module.exports =
 
   paths:
   {
-    sources: './solidity/contracts',
-    artifacts: './solidity/abis',
+    sources: './contracts',
+    tests: './test',
+    artifacts: './abis',
+    cache: './cache',
   },
   
   mocha:
