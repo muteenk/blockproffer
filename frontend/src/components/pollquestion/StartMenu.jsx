@@ -5,11 +5,22 @@ import { PollContext } from '../../Helpers/Contexts'
 function StartMenu() {
     const { question, setQuestion } = useContext(PollContext)
   return (
-    <div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit fugiat temporibus veniam tenetur impedit animi facere, voluptas totam sint ratione at minima cum eius culpa molestiae enim illo! Quod recusandae blanditiis accusamus sit unde ipsa ducimus, cum atque nam delectus, ipsam sed dolores quidem eius rerum voluptatum sequi voluptatibus nisi ullam quasi expedita in, nostrum aperiam et. Maiores unde voluptatem doloribus architecto molestias dignissimos ipsam ipsa repellendus ullam at iusto officia, consectetur aliquid veritatis neque reiciendis porro odio eos beatae alias? Id corrupti quae aliquid recusandae architecto. Beatae, alias natus assumenda sed a facere cum deserunt facilis earum ab eius.</p>
-        <button class="mt-12 text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" onClick= {() => setQuestion("poll")}>
+    <div class='bg-gray-900'>
+      <div class='pt-[14rem] flex flex-col w- text-gray-400 justify-center align-center'>
+        <h1 class="pb-[1rem] text-white text-center font-[700] text-[4rem]">Start the poll</h1>
+        <ul class='flex flex-col pl-[9rem] justify-center text-left text-[1.7rem]'>
+          <li>1.  Select your choice in the poll once the poll starts</li>
+          <li>2.  Press the submit button once you have chosen your option, then wait for It to process</li>
+          <li>3.  Please ensure your meta mask account is connected and signed in</li>
+        </ul>
+      </div>
+      <div class='flex justify-center align-center'>
+        <button class="mt-[7rem] mb-[17rem] relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800" onClick= {() => setQuestion("poll")}>
+          <span class='text-[2rem] relative px-10 py-5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
             Start
+          </span>
         </button>
+      </div>
     </div>
   )
 }
