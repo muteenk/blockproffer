@@ -12,15 +12,16 @@ function Pollquestion(props) {
 
   const [question, setQuestion] = useState('verification')
   const [userToken, setUserToken] = useState(null)
-  const [userVoted, setUserVoted] = useState(false)
+  // const [hasVoted, setHasVoted] = useState(null)
   const [score, setScore] = useState(0);
 
 
-  const timerCheck = () => {
+  const timerCheck = (hasVoted) => {
 
     let startDate = new Date(props.room.startDate + " " + props.room.startTime)
     let endDate = new Date(props.room.endDate + " " + props.room.endTime)
     let currentDate = new Date();
+
     
     if (currentDate < startDate) {
       setQuestion("pollNotStarted")
@@ -28,7 +29,7 @@ function Pollquestion(props) {
     else if (currentDate > endDate) {
       setQuestion("finalScreen")
     }
-    else if (userVoted) {
+    else if (hasVoted) {
       setQuestion("endScreen")
     }
     else {
@@ -42,7 +43,7 @@ function Pollquestion(props) {
     <section className='pollQuestions'>
         <Header />
         <PollContext.Provider value={{ question, setQuestion, score, setScore }}>
-          {(question === 'verification') && <Verification roomData={props.room} timerCheck={timerCheck} userToken={userToken} setUserToken={setUserToken} setUserVoted={setUserVoted} />}
+          {(question === 'verification') && <Verification roomData={props.room} timerCheck={timerCheck} userToken={userToken} setUserToken={setUserToken}/>}
           {(question === 'pollNotStarted') && <PollNotStarted roomData={props.room} />}
           {(question === 'startMenu') && <StartMenu />}
           {(question === 'poll') && <Questions roomData={props.room} userToken={userToken} />}
