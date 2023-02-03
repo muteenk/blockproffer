@@ -17,19 +17,29 @@ function Verification(props) {
 
   function checkToken(e) {
     e.preventDefault();
-
     
+    let userFound = false;
+    let hasVoted = false;
 
     props.roomData.allowedUsers.map((user, index) => {
+
       if(user.Token === tokenInput){
         props.setUserToken(tokenInput)
+        userFound = true;
         if (user.hasVoted) {
-          props.setUserVoted(true)
+          hasVoted = true;
         }
-        props.timerCheck();
+        
         return;
       } 
     })
+
+    if (!userFound) {
+      console.log("User not found")
+    }
+    else{
+      props.timerCheck(hasVoted)
+    }
   }
 
 
