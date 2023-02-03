@@ -1,3 +1,4 @@
+# Primary Stuff
 [] Connecting Solidity to the Front End - (Aryan, Muteen)
 [x] Dont allow user to vote twice - (Muteen)
 [x] Take user voting token after logging in the room - (Neelanjan, Muteen) 
@@ -5,7 +6,7 @@
 [x] Show Results only on selected Polls - (Muteen)
 [x] Setting the timer for voting - (Muteen, Neelanjan)
 [x] Timing Bug when voting about to start
-[] Timing Selector
+[x] Timing Selector
 [] Minor JavaScript Fixes
 [x] After voting screen - (Neelanjan)
 [] Fill Placeholder Text - (Neelanjan)
@@ -18,6 +19,12 @@
 [x] Options limiting to 10
 [x] Atleast 2 options
 [x] No two options are same
+
+# Secondary Stuff
+[] UI Improvements
+[] Code Refactoring
 [] Proper Error Handling
 [] Optimise Code
 [] Documentation - (Neelanjan, Rishit)
+[] Dockerize
+[] Deploy
