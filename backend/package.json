@@ -22,21 +22,16 @@
   },
   "homepage": "https://github.com/Semicolon-Stardust/blockproffer",
   "dependencies": {
-    "alchemy-sdk": "^2.4.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "ethers": "^5.7.2",
     "express": "^4.18.2",
     "mongoose": "^6.8.4",
     "nodemailer": "^6.9.1",
     "nodemon": "^2.0.20",
     "short-uuid": "^4.2.2",
     "socket.io": "^4.5.4",
-    "solc": "^0.8.17",
-    "truffle": "^5.7.4",
     "uuid": "^9.0.0",
-    "validate": "^5.2.0",
-    "web3": "^1.8.1"
+    "validate": "^5.2.0"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
