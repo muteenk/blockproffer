@@ -1,5 +1,6 @@
 // import './App.css';
 import { Routes, Route} from 'react-router-dom';
+import { getPolls, getUser, isWallectConnected } from './Blockchain.services'
 import Home from './components/home/Home';
 import About from './components/about/About';
 import Contact from './components/contact/Contact';
