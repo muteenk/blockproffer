@@ -13,6 +13,15 @@ services:
       - logs:/app/logs
       - ./backend:/app
       - /app/node_modules
+    environment: 
+      - NODE_ENV = development
+      - PORT = 5555
+      - MONGO_URI = "mongodb+srv://admin:admin@blockproffer.2mdf0iq.mongodb.net/blockDB?retryWrites=true&w=majority"
+      - ENDPOINT_URL = "https://eth-mainnet.g.alchemy.com/v2/upXr7j3MBfBcinXb29aZ32w99bqyWuv6"
+      - DEPLOYER_KEY = 'c7d2bbc15215910b453bb63dbf0067eb42a943e1751e3608b53daa8ef669be97'
+      - SECRET_KEY = 'lawsuit glow combine top tuition kit spice notice adult approve mesh govern'
+      - EMAIL = 'semicolonstardust@gmail.com'
+      - EMAIL_PASS = 'boslhujlgblxowts'
     depends_on:
       - mongodb
 
