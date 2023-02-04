@@ -9,13 +9,21 @@ const fs = require('fs');
 
 async function main() 
 {
-  const base_uri = ""
+  const base_uri = "https://ipfs.io/ipfs/QmWau3WyAjabp7D2SdTRjygynijEwPe2B6zatjWDbCgWLa"
   const Contract = await ethers.getContractFactory("pollSystem");
-  const contract = await Contract.deploy('BlockProffer', base_uri);
+  const contract = await Contract.deploy();
 
   await contract.deployed();
 
-  const address = JSON.stringify(contract.address)
+  const address = JSON.stringify({address : contract.address }, null, 4)
+  fs.writeFileSync('abis/address.json', address, 'utf8', (err) => 
+  {
+    if (err) 
+    {
+      console.log(err)
+    }
+    console.log('Deployed', contract.address)
+  })
 }
 
 // We recommend this pattern to be able to use async/await everywhere
