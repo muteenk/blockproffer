@@ -6,6 +6,7 @@ import OptionGenerator from '../optionGenerator/OptionGenerator';
 import Success from './Success';
 import Footer from '../footer/Footer';
 import { useKey } from '../../useKeyHook.js';
+import { createPoll } from '../../Blockchain.services'
 
 
 function Createpoll() {
@@ -139,6 +140,10 @@ function Createpoll() {
 
     const data = await response.json();
     console.log(data);
+
+    if (response.status === 201){
+      await createPoll(data.room.roomID)
+    }
 
     (response.status === 201) ? setRoom(data.room) : setRoomErr("Something Went Wrong !");
 
