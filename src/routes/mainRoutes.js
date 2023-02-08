@@ -66,7 +66,6 @@ const sendEmail = async (formData) => {
             to: user.Email,
             subject: formData.title,
             html: msg
-            // text: `Hello ${user.Name},\n${user.Token} will be your voting token for the room ${formData.roomID}.\n\nThe poll will be live: \n\tFrom : ${formData.startDate} ${formData.startTime}\n\tTo : ${formData.endDate} ${formData.endTime}\n\nRegards,\nBlock Proffer Team`
         };
 
         transporter.sendMail(mailOptions, function(error, info){
